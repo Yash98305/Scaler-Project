@@ -12,7 +12,7 @@ const accountSchema = new mongoose.Schema(
         balance : {
             type:String ,
         },
-        type: {
+        type : {
             type: String,
         },
         status:{
