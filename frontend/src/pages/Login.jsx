@@ -11,7 +11,7 @@ import img5 from "../icons/mes.gif";
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const { auth, setAuth } = useAuth();
+  const { auth, setAuth,api } = useAuth();
   const navigate = useNavigate();
 
   // form function
@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/login",
+        `${api}/user/login`,
         {
           email,
           password,

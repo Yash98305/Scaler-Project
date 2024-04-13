@@ -8,6 +8,7 @@ import img2 from "../icons/email.png";
 import img3 from "../icons/phone-call.png";
 import img4 from "../icons/padlock.png";
 import img5 from "../icons/mes.gif";
+import { useAuth } from "../context/auth";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,18 +16,18 @@ const Register = () => {
   const [email, setemail] = useState("");
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
-
+const {api} = useAuth();
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/register",
+        `${api}/user/register`,
         {
           name,
           email,
           phone,
           password,
-          avatar : api
+          avatar : photoapi
         }
       );
       if (res && res.data.success) {
@@ -41,7 +42,7 @@ const Register = () => {
     }
   };
 
-  const api = `https://api.multiavatar.com/4645646/${Math.round(Math.random() * 1000)}.png`;
+  const photoapi = `https://api.multiavatar.com/4645646/${Math.round(Math.random() * 1000)}.png`;
 
   return (
     <>

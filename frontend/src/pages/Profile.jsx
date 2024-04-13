@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import "../css/profile.css";
 import ProfileDetail from "./components/ProfileDetail";
 import axios from "axios";
+import { useAuth } from "../context/auth";
 const Profile = () => {
-
+const {api} = useAuth();
   const [user, setuser] = useState([]);
   const getUser = async () => {
     try {
       let ls = localStorage.getItem("auth");
       ls = JSON.parse(ls);
-      const res = await axios.get("http://localhost:8000/api/v1/user/myprofile",{  
+      const res = await axios.get(`${api}/user/myprofile`,{  
         headers: {
         Authorization: ls.token,
       }})

@@ -3,14 +3,14 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home" 
 import Login from "./pages/Login" 
 import Register from "./pages/Register" 
-import Header from "./pages/Header";
+// import Header from "./pages/Header";
 import Forgot from "./pages/Forgot";
 import Profile from "./pages/Profile";
 const App = () => {
   return (
     <>
 
-   <Header/>
+   {/* <Header/> */}
     <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/home" element={<Home/>}/>

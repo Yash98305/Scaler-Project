@@ -3,6 +3,7 @@ import { io } from 'socket.io-client';
 import axios from "axios";
 
 const AuthContext = createContext(null);
+const api = "http://localhost:8000/api/v1"
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
@@ -41,6 +42,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        api,
         auth,
         setAuth,
         person,
