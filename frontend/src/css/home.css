@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 0;
 }
 .home_con>div{
     height: 100vh;

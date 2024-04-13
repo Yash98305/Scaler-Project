@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext, createContext, useRef } from "react";
-import { io } from 'socket.io-client';
 import axios from "axios";
 
 const AuthContext = createContext(null);
@@ -13,9 +12,6 @@ const AuthProvider = ({ children }) => {
   const [activeUsers, setActiveUsers] = useState([]);
   const [newMessageFlag, setNewMessageFlag] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-
-  const socket = useRef();
-
 
   //default axios
   axios.defaults.headers.common["Authorization"] = auth?.token;
@@ -35,9 +31,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   
-  useEffect(() => {
-    socket.current = io("ws://localhost:9000");
-  }, []);
+  
 
   return (
     <AuthContext.Provider
@@ -46,8 +40,7 @@ const AuthProvider = ({ children }) => {
         auth,
         setAuth,
         person,
-        setPerson,
-        socket,
+        setPerson, 
         activeUsers,
         setActiveUsers,
         newMessageFlag,

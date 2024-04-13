@@ -47,7 +47,7 @@ const {api} = useAuth();
   return (
     <>
       <div className="space"></div>
-      <div className="con_form">
+      <div className="con_form"  style={{zIndex:"999"}}>
       <div>
         <img src={img5} alt="sorry" className="mes"/>
       </div>

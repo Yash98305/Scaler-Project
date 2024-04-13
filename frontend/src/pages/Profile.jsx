@@ -3,6 +3,7 @@ import "../css/profile.css";
 import ProfileDetail from "./components/ProfileDetail";
 import axios from "axios";
 import { useAuth } from "../context/auth";
+import Body from "./Layout/Body";
 const Profile = () => {
 const {api} = useAuth();
   const [user, setuser] = useState([]);
@@ -26,6 +27,8 @@ const {api} = useAuth();
  
   return (
     <>
+          <Body e={"/profile"}/>
+
       <ProfileDetail/>
     </>
   );
