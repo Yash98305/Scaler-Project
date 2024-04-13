@@ -27,16 +27,16 @@ exports.userLoginController = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.userRegisterController = catchAsyncErrors(async (req, res, next) => { 
-  // const {name,phone, email, password } = req.body;
-  // if (!name|| !phone || !email || !password) {
-  //   return next(new ErrorHandler("Please Enter Required Field", 400));
-  // }
-  // const usere = await User.findOne({ email }).select("+password");
-  // if (!usere) {
-  //   return next(new ErrorHandler("Email Exist", 401));
-  // }
+  const {name,phone, email, password } = req.body;
+  if (!name|| !phone || !email || !password) {
+    return next(new ErrorHandler("Please Enter Required Field", 400));
+  }
+  const usere = await User.findOne({ email }).select("+password");
+  if (!usere) {
+    return next(new ErrorHandler("Email Exist", 401));
+  }
     const user = new User({
-      ...req.body
+      name,phone, email, password
     });
     await user.save(); 
     sendToken(user, 201, res);
@@ -107,11 +107,7 @@ exports.getAllUserController = catchAsyncErrors(async (req, res, next) => {
 
 exports.getAllUsersPhotoController = catchAsyncErrors(async (req, res,next) => {
   const users = await User.findById(req.params.pid).select("photo");
-  // if(!users.photo.data){
-  //   return res.status(200).json({
-  //     success:false
-  //   })
-  // }
+
     if (users.photo.data) {
       res.set("Content-type", users.photo.contentType);
       return res.status(200).send(users.photo.data);
@@ -187,55 +183,3 @@ exports.getAllUsersPhotoController = catchAsyncErrors(async (req, res,next) => {
 //     helper();
 //   }, 300000);
 // });
-exports.newConvertionController = catchAsyncErrors(async(req,res,next)=>{
-  const {senderId , receiverId} = req.body;
-const exist = await Conversation.findOne({
-  members:{
-    $all : [receiverId,senderId]
-  }
-})
-if(exist){
-  return res.status(200).json({
-    message : "conversation already exists"
-  })
-}
-
-const newConvertion = new Conversation({
-  members : [senderId , receiverId]
-})
-await newConvertion.save();
-return res.status(200).json({
-  message : "conversation saved successfully"
-})
-})
-
-exports.getConversationController = catchAsyncErrors(async(req,res,next)=>{
-  const {senderId , receiverId} = req.body;
-  let conversation = await Conversation.findOne({
-    members : {
-      $all : [receiverId,senderId]    }
-    })
-  return res.status(200).json(conversation)
-})
-
-exports.newMessageController = catchAsyncErrors(async(req,res,next)=>{
-const newMessage = new Message(req.body)
-await newMessage.save()
-await Conversation.findByIdAndUpdate(req.body.conversationId, {message:req.body.text})
-return res.status(200).json({
-  message : "message has sent"
-})
-})
-
-exports.getMessagesController = catchAsyncErrors(async(req,res,next)=>{
-  const message = await Message.find({conversationId : req.params.id})
-  return res.status(200).json(message)
-})
-
-exports.uploadFileController = catchAsyncErrors(async(req,res,next)=>{
-  if(!req.file){
-    return res.status(404).json("file not found")
-  }
-  const imageUrl = `http://localhost:8000/api/v1/user/file/${req.file.filename}`
-  return res.status(200).json(imageUrl)
-})

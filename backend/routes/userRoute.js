@@ -11,9 +11,5 @@ router.route('/updateprofile/:id').put(formidable(),pages.updateProfile)
 router.route('/getallusers').post(pages.getAllUserController)
 router.route('/photo/:pid').get(pages.getAllUsersPhotoController)
 router.route('/myprofile').get(isAuthenticatedUser,pages.getUserDetailsController)
-router.route('/conversation/add').post(pages.newConvertionController)
-router.route('/conversation/get').post(pages.getConversationController)
-router.route('/message/add').post(pages.newMessageController)
-router.route('/message/get/:id').get(pages.getMessagesController)
 
 module.exports = router

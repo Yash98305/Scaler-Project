@@ -56,7 +56,6 @@ currency:{
   otp: {
     type: String,
   },
-  
   createdAt: {
     type: Date,
     default: Date.now,
