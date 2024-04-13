@@ -9,7 +9,7 @@ const accountSchema = new mongoose.Schema(
         name: {
             type: String,
         },
-        balance: {
+        balance : {
             type:String ,
         },
         type: {
