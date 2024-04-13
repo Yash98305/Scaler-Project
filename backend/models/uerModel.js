@@ -15,17 +15,20 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: Number,
   },
+  address: {
+    type: String,
+  },
   password: {
     type: String,
   },
   about: {
     type: String,
   },
-  avatar:{
+  avatar: {
     type: String,
 
   },
-  photo : {
+  photo: {
     data: Buffer,
     contentType: String,
   },
