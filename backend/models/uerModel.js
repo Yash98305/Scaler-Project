@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
@@ -32,9 +31,32 @@ const userSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
+status : {
+  type: String,
+  enum: ["active", "inactive"],
+  default: "active"
+},
+monthly_spending :{
+  type: String,
+},
+annual_spending :{
+  type: String,
+},
+monthly_saving :{
+  type: String,
+},
+monthly_earning :{
+  type: String,
+},
+currency:{
+  type: String,
+  enum: ["INR", "USD", "EUR", "GBP"],
+  default: "INR"
+},
   otp: {
     type: String,
   },
+  
   createdAt: {
     type: Date,
     default: Date.now,
