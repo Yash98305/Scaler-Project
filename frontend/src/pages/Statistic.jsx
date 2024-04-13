@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Body from './Layout/Body'
+import StatisticPage from './components/StatisticPage'
 const Statistic = () => {
   return (
-    <div>Statistic</div>
+    <><Body obj={<StatisticPage/>}/></>
+
   )
 }
 

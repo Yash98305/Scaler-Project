@@ -1,7 +1,7 @@
 const Category = require("../models/categoriesModel.js");
 const catchAsyncError = require("../middlewares/catchAsyncError");
 
-exports.categoriesController = catchAsyncError(async(req,res,next)=>{
+exports.createController = catchAsyncError(async(req,res,next)=>{
     const userId = req.user._id
     const {name,type,budget} = req.body
     const category = new Category({name,type,budget,userId})

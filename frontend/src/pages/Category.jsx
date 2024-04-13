@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Body from './Layout/Body'
+import CategoryPage from './components/CategoryPage'
 const Category = () => {
   return (
-    <div>Category</div>
+    <><Body obj={<CategoryPage/>}/></>
+
   )
 }
 

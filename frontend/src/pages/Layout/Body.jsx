@@ -10,29 +10,14 @@ import Category from "../Category"
 import Income from "../Income"
 import Budget from "../Budget"
 import Statistic from "../Statistic"
-const Body = (props) => {
+const Body = ({obj}) => {
     const location = useLocation();
     const navigate = useNavigate();
     const {auth,setAuth} = useAuth();
-    const e=props.e
-    console.log(e);
-    const path =()=>{
-        if(props.e==='/profile')
-              return <Profile/>;
-        //  if(e==='/home')
-        //       return <Home />;
-        //       if(e==='/category')
-        //       return <Category />;
-        //       if(e==='/expenses')
-        //       return <Expenses />;
-        //       if(e==='/income')
-        //       return <Income />;
-        //       if(e==='/budget')
-        //       return <Budget />;
-        //       if(e==='/statistic')
-        //       return <Statistic />;
-          }
-    
+   
+    const objectreturn=(obj)=>{
+      return obj
+    }
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -85,7 +70,7 @@ const Body = (props) => {
           </ul>
         </div>
         <div className="page">{
-         e ==="/profile"?<Profile/>:null
+          objectreturn(obj)
         }</div>
       </div>
     </div>

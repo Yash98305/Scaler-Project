@@ -1,11 +1,11 @@
 import React from "react";
-import Body from "./Layout/Body";
-
+import Body from "./Layout/Body.jsx";
+import HomePage from "./components/HomePage.jsx"
 const Home = () => {
   
   return (
     <>
-      <Body/>
+      <Body obj={<HomePage/>}/>  
     </>
     
   );

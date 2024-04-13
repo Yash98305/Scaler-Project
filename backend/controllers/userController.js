@@ -1,8 +1,6 @@
 const ErrorHandler = require("../utils/errorHandler.js");
 const catchAsyncErrors = require("../middlewares/catchAsyncError.js");
 const User = require("../models/uerModel.js");
-const Conversation = require("../models/conversationModel.js");
-const Message = require("../models/messageModel.js");
 const sendToken = require("../jwtToken/jwtToken.js");
 const sendEmail = require("../utils/nodemailer.js");
 const fs = require("fs") ;

@@ -106,7 +106,7 @@ return (
             )}
           </div>
         {/* <div><h1>Your Profile</h1></div> */}
-        <div class="container">
+        <div claseName="container">
           <div class="text">Update Profile</div>
           {/* <div className="btn1_con">
           <button class="Btn1" onClick={EditHandle}>Edit 

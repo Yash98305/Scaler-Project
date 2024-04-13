@@ -27,9 +27,7 @@ const {api} = useAuth();
  
   return (
     <>
-          <Body e={"/profile"}/>
-
-      <ProfileDetail/>
+          <Body obj={<ProfileDetail/>}/>   
     </>
   );
 };
