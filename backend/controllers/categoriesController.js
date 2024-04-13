@@ -24,9 +24,9 @@ exports.getCategory = catchAsyncError(async(req,res,next)=>{
 })
 
 exports.updateCategory = catchAsyncError(async(req,res,next)=>{
-    const userId = req.user._id
+    const categoryId = req.params.id
     const {name,type,budget} = req.body
-    const category = await Category.findOneAndUpdate({userId},{name,type,budget},{new:true})
+    const category = await Category.findOneAndUpdate({categoryId},{name,type,budget},{new:true})
     res.status(200).send({
         success: true,
         message: "Category updated successfully",
@@ -35,12 +35,10 @@ exports.updateCategory = catchAsyncError(async(req,res,next)=>{
 })
 
 exports.deleteCategory = catchAsyncError(async(req,res,next)=>{
-    const userId = req.user._id
-    const {name} = req.body
-    const category = await Category.findOneAndDelete({userId,name})
+    const deleteId = req.params.id
+    await Category.findOneAndDelete({deleteId})
     res.status(200).send({
         success: true,
-        message: "Category deleted successfully",
-        category
+        message: "Category deleted successfully"
     })
 })
