@@ -1,6 +1,3 @@
-// type:mongoose.Schema.Types.ObjectId,
-// ref:"User",
-
 const mongoose = require("mongoose");
 
 const accountSchema = new mongoose.Schema(
