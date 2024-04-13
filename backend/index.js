@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require('dotenv');
 const errorMiddleware = require("./middlewares/error.js")
 const userRoute = require('./routes/userRoute.js')
+const categoriesRoute = require('./routes/categoriesRoute.js')
 const bodyParser = require('body-parser')
 const morgan = require('morgan');
 const cookieParser = require("cookie-parser");
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/v1/user',userRoute);
+app.use('/api/v1/category',categoriesRoute);
 
 app.get('/',(req,res)=>{
     res.send({
