@@ -19,12 +19,14 @@ const IncomePageRight = () => {
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [amount, setAmount] = React.useState('');
-    const [account, setType] = React.useState('');
+    const [account, setAccount] = React.useState('');
+    const [category, setCategory] = React.useState('');
+
     const token = JSON.parse(localStorage.getItem("auth")).token;
     const { api } = useAuth();
 
     const handleChange = (event) => {
-        setType(event.target.value);
+        setAccount(event.target.value);
     };
 
     const handleClickOpen = () => {
@@ -34,14 +36,15 @@ const IncomePageRight = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    
+
     const Submit = async (event) => {
         event.preventDefault();
         const data = {
-            
+            title, account, amount, category
         }
+        console.log(data)
         try {
-            const res = await axios.post(`${api}/category/create`, data, {
+            const res = await axios.post(`${api}/income/create`, data, {
                 headers: {
                     Authorization: token
                 }
@@ -71,7 +74,7 @@ const IncomePageRight = () => {
             >
                 <DialogTitle>Record Income</DialogTitle>
                 <DialogContent>
-                
+
                     <TextField
                         autoFocus
                         required
@@ -108,7 +111,7 @@ const IncomePageRight = () => {
                                 id="demo-simple-select"
                                 value={account}
                                 label="Account"
-                                onChange={handleChange}
+                                onChange={(e) => setAccount(e.target.value)}
                             >
                                 <MenuItem value={"income"}>Others</MenuItem>
                                 <MenuItem value={"expense"}>Credit Card</MenuItem>
@@ -119,7 +122,7 @@ const IncomePageRight = () => {
                         </FormControl>
                     </Box>
 
-                    
+
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Type</InputLabel>
@@ -128,7 +131,7 @@ const IncomePageRight = () => {
                                 id="demo-simple-select"
                                 value={category}
                                 label="Category"
-                                onChange={handleChange}
+                                onChange={(e) => setCategory(e.target.value)}
                             >
                                 <MenuItem value={"income"}>Others</MenuItem>
                                 <MenuItem value={"expense"}>Credit Card</MenuItem>
@@ -138,6 +141,8 @@ const IncomePageRight = () => {
                             </Select>
                         </FormControl>
                     </Box>
+
+                   
 
                 </DialogContent>
 
