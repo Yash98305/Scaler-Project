@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 
 const accountSchema = new mongoose.Schema(
     {
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-        },
         name: {
             type: String,
         },
@@ -17,7 +13,7 @@ const accountSchema = new mongoose.Schema(
         },
         status:{
             type: String,
-            enum:["active","inactive"],
+            enum:["Active","Inactive"],
         },
     },
     {

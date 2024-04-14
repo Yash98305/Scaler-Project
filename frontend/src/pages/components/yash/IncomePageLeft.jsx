@@ -8,20 +8,20 @@ import Search from '../../Layout/Search';
 
 const IncomePageLeft = () => {
     const { api } = useAuth();
-    const [categories, setCategories] = useState([]);
+    const [income, SetIncome] = useState([]);
     const [error, setError] = useState('');
     const token = JSON.parse(localStorage.getItem("auth")).token;
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await axios.get(`${api}/category/getcategory`, {
+                const res = await axios.get(`${api}/income/get`, {
                     headers: {
                         Authorization: token,
                     }
                 });
-                console.log(res.data.categories);
-                setCategories(res.data.categories); // Assuming res.data contains the categories array
+                console.log(res.data.income);
+                SetIncome(res.data.income); // Assuming res.data contains the categories array
             } catch (err) {
                 console.error('Failed to fetch categories:', err);
                 setError('Failed to load categories');
@@ -53,12 +53,14 @@ const IncomePageLeft = () => {
                             <TableHead sx={{position:"sticky"}}>
                                 <TableRow>
                                     <TableCell align="center">No.</TableCell>
-                                    <TableCell align="center">Category</TableCell>
+                                    <TableCell align="center">Name</TableCell>
+                                    <TableCell align="center">Date</TableCell>
+                                    <TableCell align="center">Amount</TableCell>
                                     <TableCell align="center">Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody sx={{overflow:"hidden"}}>
-                                {categories.length > 0 ? categories.map((category, index) => (
+                                {income.length > 0 ? income.map((category, index) => (
                                     <TableRow key={category.id}>
                                         <TableCell align="center">{index + 1}</TableCell>
                                         <TableCell align="center">{category.name}</TableCell>

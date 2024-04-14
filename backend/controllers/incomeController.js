@@ -13,3 +13,12 @@ exports.createController = catchAsyncErrors(async(req,res,next)=>{
         income
     });
 })
+exports.getController = catchAsyncErrors(async(req,res,next)=>{
+    const userId = req.user._id
+    const income = await Income.find({userId})
+    res.status(200).send({
+        success: true,
+        message: "income fetched successfully",
+        income
+    });
+})
