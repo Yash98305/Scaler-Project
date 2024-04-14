@@ -112,3 +112,10 @@ justify-content: space-between;
     align-content: center;
     justify-content: center;
 }
+MuiStack-root>.MuiPickersTextField-root {
+    min-width: 100%;
+}
+.css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root{
+    height: 30px;
+    width: 30px;
+}

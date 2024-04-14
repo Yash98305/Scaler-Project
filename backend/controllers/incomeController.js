@@ -4,6 +4,7 @@ const Income = require("../models/incomeModel.js");
 const fs = require("fs");
 exports.createController = catchAsyncErrors(async(req,res,next)=>{
     const userId = req.user._id
+    console.log(userId);
     const {title,amount,accountId,categoryId,income_date} = req.body
     const income = new Income({userId,title,amount,accountId,categoryId,income_date})
     await income.save();
