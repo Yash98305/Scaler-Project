@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login" 
 import Register from "./pages/Register" 
 // import Header from "./pages/Header";
+import ErrorPage from "./pages/ErrorPage.jsx";
 import Forgot from "./pages/Forgot";
 import Profile from "./pages/Profile";
 import Category from "./pages/Category.jsx";
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/income" element={<Income/>}/>
         <Route path="/budget" element={<Budget/>}/>
         <Route path="/statistic" element={<Statistic/>}/>
+        <Route path="*" element={<ErrorPage/>}/>
       </Routes>
    
     

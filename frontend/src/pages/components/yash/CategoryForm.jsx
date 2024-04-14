@@ -10,6 +10,7 @@ import axios from "axios";
 import {useAuth} from "../../../context/auth.js"
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Hidden } from '@mui/material';
 
 
 const CategoryForm = () => {
@@ -43,15 +44,15 @@ const CategoryForm = () => {
             <div className='category_form'>
                 <Paper sx={{ width: '80%', margin: 'auto' }}>
                     <TableContainer sx={{ maxHeight: 440, minHeight: 440 }}>
-                        <Table stickyHeader aria-label="sticky table">
-                            <TableHead>
+                        <Table aria-label="sticky table">
+                            <TableHead sx={{position:"sticky"}}>
                                 <TableRow>
                                     <TableCell align="center">No.</TableCell>
                                     <TableCell align="center">Category</TableCell>
                                     <TableCell align="center">Action</TableCell>
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
+                            <TableBody sx={{overflow:"hidden"}}>
                                 {categories.length > 0 ? categories.map((category, index) => (
                                     <TableRow key={category.id}>
                                         <TableCell align="center">{index + 1}</TableCell>
