@@ -42,7 +42,7 @@ const ExpensePageRight = () => {
   const getCategoryData = async () => {
     
     try {
-      const res = await axios.get(`${api}/category/getcategory`, {
+      const res = await axios.get(`${api}/category/getexpensecategory`, {
         headers: {
           Authorization: token,
         },

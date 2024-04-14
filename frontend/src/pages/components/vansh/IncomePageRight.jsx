@@ -42,7 +42,7 @@ const IncomePageRight = () => {
   const getCategoryData = async () => {
     
     try {
-      const res = await axios.get(`${api}/category/getcategory`, {
+      const res = await axios.get(`${api}/category/getincomecategory`, {
         headers: {
           Authorization: token,
         },

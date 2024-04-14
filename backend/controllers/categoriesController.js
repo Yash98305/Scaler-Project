@@ -22,6 +22,24 @@ exports.getCategory = catchAsyncError(async(req,res,next)=>{
         categories
     })
 })
+exports.getIncomeCategory = catchAsyncError(async(req,res,next)=>{
+    const userId = req.user._id
+    const categories = await Category.find({userId,type:"income"}).select("name")
+    res.status(200).send({
+        success: true,
+        message: "Categories fetched successfully",
+        categories
+    })
+})
+exports.getExpenseCategory = catchAsyncError(async(req,res,next)=>{
+    const userId = req.user._id
+    const categories = await Category.find({userId,type:"expense"}).select("name")
+    res.status(200).send({
+        success: true,
+        message: "Categories fetched successfully",
+        categories
+    })
+})
 
 exports.updateCategory = catchAsyncError(async(req,res,next)=>{
     const categoryId = req.params.id
