@@ -14,7 +14,7 @@ import Select from '@mui/material/Select';
 import axios from 'axios';
 import { useAuth } from '../../../context/auth';
 
-const CategoryCreate = () => {
+const IncomePageRight = () => {
 
     const [open, setOpen] = React.useState(false);
     const [type, setType] = React.useState('');
@@ -59,7 +59,7 @@ const CategoryCreate = () => {
     return (
         <React.Fragment>
             <Button variant="outlined" onClick={handleClickOpen}>
-                Add Category
+                Income Details
             </Button>
             <Dialog
                 open={open}
@@ -69,15 +69,15 @@ const CategoryCreate = () => {
                     onSubmit: Submit
                 }}
             >
-                <DialogTitle>Add Category</DialogTitle>
+                <DialogTitle>Record Income</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         required
                         margin="dense"
-                        id="category"
-                        name="category"
-                        label="Category Name"
+                        id="title"
+                        name="tile"
+                        label="Title"
                         type="text"
                         fullWidth
                         value={name}
@@ -114,4 +114,4 @@ const CategoryCreate = () => {
     );
 }
 
-export default CategoryCreate
+export default IncomePageRight
