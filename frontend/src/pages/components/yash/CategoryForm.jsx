@@ -46,7 +46,7 @@ const CategoryForm = () => {
                     <TableContainer sx={{ maxHeight: 440, minHeight: 440 }}>
                         <Table aria-label="sticky table">
                             <TableHead sx={{position:"sticky"}}>
-                                <TableRow>
+                                <TableRow key={Math.random()}>
                                     <TableCell align="center">No.</TableCell>
                                     <TableCell align="center">Category</TableCell>
                                     <TableCell align="center">Action</TableCell>
