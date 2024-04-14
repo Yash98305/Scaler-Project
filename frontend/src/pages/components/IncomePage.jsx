@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import IncomePageLeft from "./yash/IncomePageLeft";
 
 const IncomePage = () => {
   return (
-    <div>IncomePage</div>
-  )
-}
+    <>
+      <div className='category_page'>
+      <div className='category_page_left'>
+        <IncomePageLeft/>
+      </div>
+      <div className='category_page_right'></div>
+      </div>
+    </>
+  );
+};
 
-export default IncomePage
+export default IncomePage;
