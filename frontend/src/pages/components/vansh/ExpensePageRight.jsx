@@ -12,6 +12,8 @@ import {
   FormControl,
   Select,
 } from "@mui/material";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+
 import axios from "axios";
 import { useAuth } from "../../../context/auth";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -85,9 +87,26 @@ const ExpensePageRight = () => {
   console.log(value);
   return (
     <React.Fragment>
-    <Button variant="outlined" onClick={handleClickOpen}>
-      Income Details
-    </Button>
+    <Button
+        sx={{ float: "right", margin: "30px 40px", display: "flex" }}
+        variant="contained"
+        color="success"
+        onClick={handleClickOpen}
+      >
+       <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: "15px",
+          }}
+        >
+                  <AddCircleOutlineOutlinedIcon sx={{fontSize: "23px",marginRight:"4px"}} />
+
+          Add Expense
+        </div>
+      </Button>
+    
     <Dialog
       open={open}
       onClose={handleClose}
@@ -96,9 +115,14 @@ const ExpensePageRight = () => {
         onSubmit: Submit,
       }}
     >
-      <DialogTitle>Record Income</DialogTitle>
+      <DialogTitle
+                sx={{ minWidth: "400px", backgroundColor: "green", color: "white" }}
+
+      >Record Income</DialogTitle>
       <DialogContent>
         <TextField
+                  sx={{marginTop:"20px"}}
+
           autoFocus
           required
           margin="dense"
@@ -195,10 +219,10 @@ const ExpensePageRight = () => {
         </LocalizationProvider>
       </DialogContent>
 
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button type="submit">Submit</Button>
-      </DialogActions>
+      <Button  variant="contained"
+        color="warning" onClick={handleClose}>Cancel</Button>
+          <Button  variant="contained"
+        color="success" type="submit">Submit</Button>
     </Dialog>
   </React.Fragment>
   );
