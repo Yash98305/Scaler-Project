@@ -17,10 +17,12 @@ import { useAuth } from '../../../context/auth';
 const IncomePageRight = () => {
 
     const [open, setOpen] = React.useState(false);
-    const [type, setType] = React.useState('');
-    const [name, setName] = React.useState('');
+    const [title, setTitle] = React.useState('');
+    const [amount, setAmount] = React.useState('');
+    const [account, setType] = React.useState('');
     const token = JSON.parse(localStorage.getItem("auth")).token;
     const { api } = useAuth();
+
     const handleChange = (event) => {
         setType(event.target.value);
     };
@@ -32,13 +34,11 @@ const IncomePageRight = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    React.useEffect(() => {
-
-    }, [name])
+    
     const Submit = async (event) => {
         event.preventDefault();
         const data = {
-            type, name
+            
         }
         try {
             const res = await axios.post(`${api}/category/create`, data, {
@@ -46,8 +46,8 @@ const IncomePageRight = () => {
                     Authorization: token
                 }
             })
-            setName("");
-            setType("");
+            // setName("");
+            // setType("");
         }
         catch (e) {
             console.error(e);
@@ -71,6 +71,7 @@ const IncomePageRight = () => {
             >
                 <DialogTitle>Record Income</DialogTitle>
                 <DialogContent>
+                
                     <TextField
                         autoFocus
                         required
@@ -80,9 +81,23 @@ const IncomePageRight = () => {
                         label="Title"
                         type="text"
                         fullWidth
-                        value={name}
+                        value={title}
                         variant="standard"
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+
+                    <TextField
+                        autoFocus
+                        required
+                        margin="dense"
+                        id="amount"
+                        name="amount"
+                        label="Amount"
+                        type="number"
+                        fullWidth
+                        value={amount}
+                        variant="standard"
+                        onChange={(e) => setAmount(e.target.value)}
                     />
 
                     <Box sx={{ minWidth: 120 }}>
@@ -91,12 +106,35 @@ const IncomePageRight = () => {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={type}
-                                label="Type"
+                                value={account}
+                                label="Account"
                                 onChange={handleChange}
                             >
-                                <MenuItem value={"income"}>Income</MenuItem>
-                                <MenuItem value={"expense"}>Expense</MenuItem>
+                                <MenuItem value={"income"}>Others</MenuItem>
+                                <MenuItem value={"expense"}>Credit Card</MenuItem>
+                                <MenuItem value={"expense"}>Cash</MenuItem>
+                                <MenuItem value={"expense"}>My Bank</MenuItem>
+                                <MenuItem value={"expense"}>PayPal</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+
+                    
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={account}
+                                label="Account"
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={"income"}>Others</MenuItem>
+                                <MenuItem value={"expense"}>Credit Card</MenuItem>
+                                <MenuItem value={"expense"}>Cash</MenuItem>
+                                <MenuItem value={"expense"}>My Bank</MenuItem>
+                                <MenuItem value={"expense"}>PayPal</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
