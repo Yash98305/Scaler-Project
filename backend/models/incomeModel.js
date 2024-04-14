@@ -25,10 +25,7 @@ const incomeSchema = new mongoose.Schema(
     },
     income_date: {
       type: Date,
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now
+      default: Date.now
     }
   },
   {

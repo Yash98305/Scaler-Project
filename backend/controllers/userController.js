@@ -2,9 +2,8 @@ const ErrorHandler = require("../utils/errorHandler.js");
 const catchAsyncErrors = require("../middlewares/catchAsyncError.js");
 const User = require("../models/uerModel.js");
 const sendToken = require("../jwtToken/jwtToken.js");
-const sendEmail = require("../utils/nodemailer.js");
-const fs = require("fs") ;
-const assert = require("assert");
+const fs = require("fs");
+
 
 
 
