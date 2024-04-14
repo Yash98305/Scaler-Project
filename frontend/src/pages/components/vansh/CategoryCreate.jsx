@@ -46,7 +46,8 @@ headers: {
 Authorization:token
 }
 })
-setName(name);
+setName("");
+setType("");
 }
 catch(e){
 console.error(e);
