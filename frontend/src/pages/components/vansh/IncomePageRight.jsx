@@ -115,11 +115,11 @@ const IncomePageRight = () => {
                                 label="Account"
                                 onChange={(e) => setAccount(e.target.value)}
                             >
-                                <MenuItem value={"income"}>Others</MenuItem>
-                                <MenuItem value={"expense"}>Credit Card</MenuItem>
-                                <MenuItem value={"expense"}>Cash</MenuItem>
-                                <MenuItem value={"expense"}>My Bank</MenuItem>
-                                <MenuItem value={"expense"}>PayPal</MenuItem>
+                                <MenuItem value={"661bb44f44b6accca15fda39"}>Others</MenuItem>
+                                <MenuItem value={"661bb44f44b6accca15fda3d"}>Credit Card</MenuItem>
+                                <MenuItem value={"661bb44f44b6accca15fda3c"}>Cash</MenuItem>
+                                <MenuItem value={"661bb44f44b6accca15fda3b"}>My Bank</MenuItem>
+                                <MenuItem value={"661bb44f44b6accca15fda3a"}>PayPal</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
