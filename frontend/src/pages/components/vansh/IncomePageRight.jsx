@@ -17,6 +17,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 
 const IncomePageRight = () => {
   const [open, setOpen] = React.useState(false);
@@ -24,7 +25,7 @@ const IncomePageRight = () => {
   const [amount, setAmount] = React.useState("");
   const [account, setAccount] = React.useState("");
   const [category, setCategory] = React.useState("");
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState(dayjs(new Date()));
   const [data, setData] = React.useState();
   const [error, setError] = React.useState("");
 
@@ -40,7 +41,6 @@ const IncomePageRight = () => {
   };
 
   const getCategoryData = async () => {
-    
     try {
       const res = await axios.get(`${api}/category/getincomecategory`, {
         headers: {
@@ -53,7 +53,7 @@ const IncomePageRight = () => {
       setError("Failed to load categories");
     }
   };
-console.log(data);
+  console.log(data);
   React.useEffect(() => {
     getCategoryData();
   }, []);
@@ -114,6 +114,7 @@ console.log(data);
           <TextField
             autoFocus
             required
+            sx={{ marginTop: "20px" }}
             margin="dense"
             id="amount"
             name="amount"
@@ -127,11 +128,17 @@ console.log(data);
 
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Type</InputLabel>
+              <InputLabel
+                sx={{ marginTop: "20px" }}
+                id="demo-simple-select-label"
+              >
+                Type
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={account}
+                sx={{ marginTop: "20px" }}
                 label="Account"
                 onChange={(e) => setAccount(e.target.value)}
               >
@@ -148,23 +155,26 @@ console.log(data);
 
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Type</InputLabel>
+              <InputLabel
+                sx={{ marginTop: "20px" }}
+                id="demo-simple-select-label"
+              >
+                Type
+              </InputLabel>
               <Select
+                sx={{ marginTop: "20px" }}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={category}
                 label="Category"
                 onChange={(e) => setCategory(e.target.value)}
-              >{
-                data?.map((item) => (
-                  <MenuItem value={item._id}>{item.name}</MenuItem>
-                ))
-              }
-                {/* {data.length > 0
+              >
+              
+                {data?.length > 0
                   ? data.map((data, index) => (
                       <MenuItem value={1} onChange={(e)=>setData()}>{data.name}</MenuItem>
                     ))
-                  : error || "No categories found"} */}
+                  : error || "No categories found"}
               </Select>
             </FormControl>
           </Box>
@@ -172,9 +182,13 @@ console.log(data);
             dateAdapter={AdapterDayjs}
             sx={{ width: "100%" }}
           >
-            <DemoContainer components={["DatePicker"]}>
+            <DemoContainer
+              components={["DatePicker"]}
+              sx={{ marginTop: "10px", width: "100%" }}
+            >
               <DatePicker
                 value={value}
+                sx={{ width: "100%" }}
                 onChange={(newValue) => setValue(newValue)}
               />
             </DemoContainer>
