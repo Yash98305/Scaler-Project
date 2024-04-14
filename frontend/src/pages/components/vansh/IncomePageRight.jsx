@@ -13,6 +13,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from 'axios';
 import { useAuth } from '../../../context/auth';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 const IncomePageRight = () => {
 
@@ -21,13 +26,10 @@ const IncomePageRight = () => {
     const [amount, setAmount] = React.useState('');
     const [account, setAccount] = React.useState('');
     const [category, setCategory] = React.useState('');
-
-    const token = JSON.parse(localStorage.getItem("auth")).token;
+    const [value, setValue] = React.useState(null);  
+  const token = JSON.parse(localStorage.getItem("auth")).token;
     const { api } = useAuth();
 
-    const handleChange = (event) => {
-        setAccount(event.target.value);
-    };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -40,7 +42,7 @@ const IncomePageRight = () => {
     const Submit = async (event) => {
         event.preventDefault();
         const data = {
-            title, account, amount, category
+            title, accountId:account, amount, categoryId:category,income_date:value
         }
         console.log(data)
         try {
@@ -141,7 +143,11 @@ const IncomePageRight = () => {
                             </Select>
                         </FormControl>
                     </Box>
-
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['DatePicker']}>
+        <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
+      </DemoContainer>
+    </LocalizationProvider>
                    
 
                 </DialogContent>

@@ -60,10 +60,13 @@ const IncomePageLeft = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody sx={{overflow:"hidden"}}>
-                                {income.length > 0 ? income.map((category, index) => (
-                                    <TableRow key={category.id}>
+                                {income.length > 0 ? income.map((income, index) => (
+                                    <TableRow key={income.id}>
                                         <TableCell align="center">{index + 1}</TableCell>
-                                        <TableCell align="center">{category.name}</TableCell>
+                                        <TableCell align="center">{income.title}</TableCell>
+                                        <TableCell align="center">{income.income_date}</TableCell>
+                                        <TableCell align="center">{income.amount}</TableCell>
+                                        <TableCell align="center">{income.income}</TableCell>
                                         <TableCell align="center">Edit/Delete</TableCell>
                                     </TableRow>
                                 )) : (
