@@ -77,3 +77,38 @@ li{
     display: flex;
     align-items: center;
 }
+
+
+
+
+/* category_page */
+
+
+
+
+
+
+
+.category_page{
+    border: 2px solid red;
+    display: flex;
+    height: 100%;
+    width: 100%;
+justify-content: space-between;
+}
+
+.category_page>div{
+    border: 2px solid red;  
+}
+.category_page_left{
+    width: 60%;
+}
+.category_page_right{
+    width: 40%;
+}
+.category_form{
+    display: flex;
+    margin-top: 10px;
+    align-content: center;
+    justify-content: center;
+}
