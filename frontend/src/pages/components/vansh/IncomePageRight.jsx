@@ -126,8 +126,8 @@ const IncomePageRight = () => {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={account}
-                                label="Account"
+                                value={category}
+                                label="Category"
                                 onChange={handleChange}
                             >
                                 <MenuItem value={"income"}>Others</MenuItem>
