@@ -51,7 +51,7 @@ res.status(201).send({
 
 exports.getController = catchAsyncError(async(req,res,next)=>{
     const userId = req.user._id
-    const categories = await Category.find({userId})
+    const account = await Category.find({userId})
     res.status(200).send({
         success: true,
         message: "Categories fetched successfully",
