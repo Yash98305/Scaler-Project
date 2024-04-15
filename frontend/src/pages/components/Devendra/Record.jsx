@@ -1,5 +1,4 @@
 import React from 'react'
-<<<<<<< HEAD
 import '../../../css/record.css'
 function Record() {
   return (
@@ -13,14 +12,6 @@ function Record() {
             <h1>+ Rs 0</h1>
         </div>
       
-=======
-
-function Record() {
-  return (
-    <div className=''>
-      <div></div>
-      <div></div>
->>>>>>> d6b880900270461e403e8a03430e6374f6d614f5
     </div>
   )
 }
