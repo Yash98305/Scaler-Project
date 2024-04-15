@@ -90,12 +90,18 @@ console.log(auth);
                     Statistics
                   </NavLink>
                 </li>
+                <li>
+                    <InsightsRoundedIcon color="secondary" />
+                  <NavLink to="/account">
+                    Account
+                  </NavLink>
+                </li>
               </ul>
               <ul>
                 <li>
                     <AccountBoxRoundedIcon color="secondary" />
                   <NavLink to="/profile">
-                    Account
+                    Profile
                   </NavLink>
                 </li>
                 <li>

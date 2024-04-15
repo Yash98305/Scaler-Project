@@ -12,6 +12,7 @@ import Expenses from "./pages/Expenses.jsx";
 import Income from "./pages/Income.jsx";
 import Budget from "./pages/Budget.jsx";
 import Statistic from "./pages/Statistic.jsx";
+import Account from "./pages/Account.jsx";
 const App = () => {
   return (
     <>
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/income" element={<Income/>}/>
         <Route path="/budget" element={<Budget/>}/>
         <Route path="/statistic" element={<Statistic/>}/>
+        <Route path="/account" element={<Account/>}/>
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
    

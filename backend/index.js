@@ -11,6 +11,7 @@ const cors = require('cors')
 const {fileURLToPath} = require("url");
 const expenseRoute = require("./routes/expenseRoute.js");
 const incomeRoute = require("./routes/incomeRoute.js");
+const accountRoute = require("./routes/accountRoute.js");
 dotenv.config()
 
 app.use(cors());
@@ -23,6 +24,7 @@ app.use('/api/v1/user',userRoute);
 app.use('/api/v1/category',categoriesRoute);
 app.use('/api/v1/income',incomeRoute);
 app.use('/api/v1/expense',expenseRoute);
+app.use('/api/v1/account',accountRoute);
 
 app.get('/',(req,res)=>{
     res.send({
