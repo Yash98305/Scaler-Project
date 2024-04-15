@@ -16,8 +16,9 @@ const HomePage = () => {
             <CreditCard />
           </div>
 
-          <div style={{ border: "2px solid red", width: "50%" }}>
+          <div style={{ border: "2px solid red", width: "50%" ,}}>
             Upcoming Payments
+            <Record/>
           </div>
 
         </div>
@@ -29,9 +30,6 @@ const HomePage = () => {
       <div className="rightCont" style={{ border: "2px solid red", width: "40%", margin: "10px", borderRadius: "30px" }}>
 
       </div>
-    <div style={{width:"100%",height:"100%"}}>
-
-    </div>
    </div>
   )
 }
