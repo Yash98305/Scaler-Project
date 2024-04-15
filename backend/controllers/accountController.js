@@ -6,9 +6,10 @@ const ErrorHandler = require("../utils/errorHandler.js");
 
 exports.createController = catchAsyncError(async(req,res,next)=>{
     const userId = req.user._id
-    const e = Account.findById(userId)
+    const e = await Account.findOne({userId});
+    console.log(e);
     if(e){
-        return next(new ErrorHandler("Account is already associated",400))
+        return next(new ErrorHandler("Account is already associated",200))
     }
     const cash= {
         userId,

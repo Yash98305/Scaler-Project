@@ -20,17 +20,21 @@ const AccountRight = () => {
   const [name, setName] = React.useState("");
   const token = JSON.parse(localStorage.getItem("auth")).token;
   const { api } = useAuth();
-  const handleChange = (event) => {
-    setType(event.target.value);
-  };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+
+  const handleSub =async ()=>{
+    try {
+        const res = await axios.get(`${api}/account/create`, {
+          headers: {
+            Authorization: token,
+          }
+        });
+        console.log(res);
+      } catch (e) {
+        console.error(e);
+      }
+  }
   React.useEffect(() => {}, [name]);
   const Submit = async (event) => {
     event.preventDefault();
@@ -39,18 +43,16 @@ const AccountRight = () => {
       name,
     };
     try {
-      const res = await axios.post(`${api}/category/create`, data, {
+      const res = await axios.post(`${api}/account/create`, {
         headers: {
           Authorization: token,
         },
       });
-      setName("");
-      setType("");
+     console.log(res);
     } catch (e) {
       console.error(e);
     }
 
-    handleClose();
   };
 
   return (
@@ -59,7 +61,7 @@ const AccountRight = () => {
         sx={{ float: "right", margin: "30px 40px", display: "flex" }}
         variant="contained"
         color="success"
-        onClick={handleClickOpen}
+        onClick={handleSub}
       >
         <div
           style={{
@@ -75,68 +77,6 @@ const AccountRight = () => {
           Add Account
         </div>
       </Button>
-
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          component: "form",
-          onSubmit: Submit,
-        }}
-      >
-        <DialogTitle
-          sx={{ minWidth: "400px", backgroundColor: "green", color: "white" }}
-        >
-          Add Account
-        </DialogTitle>
-        <DialogContent>
-          <TextField
-                    sx={{marginTop:"20px"}}
-
-            autoFocus
-            required
-            margin="dense"
-            id="category"
-            name="category"
-            label="Category Name"
-            type="text"
-            fullWidth
-            value={name}
-            variant="standard"
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel
-                sx={{ marginTop: "20px" }}
-                id="demo-simple-select-label"
-              >
-                Type
-              </InputLabel>
-              <Select
-                sx={{ marginTop: "20px" }}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={type}
-                label="Type"
-                onChange={handleChange}
-              >
-                <MenuItem value={"income"}>Income</MenuItem>
-                <MenuItem value={"expense"}>Expense</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </DialogContent>
-
-        <DialogActions>
-       
-          <Button  variant="contained"
-        color="warning" onClick={handleClose}>Cancel</Button>
-          <Button  variant="contained"
-        color="success" type="submit">Submit</Button>
-        </DialogActions>
-      </Dialog>
     </React.Fragment>
   );
 };
