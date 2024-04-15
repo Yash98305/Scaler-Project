@@ -193,7 +193,7 @@ const IncomePageRight = () => {
               
                 {data?.length > 0
                   ? data.map((data, index) => (
-                      <MenuItem value={1} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                      <MenuItem value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
                     ))
                   : error || "No categories found"}
               </Select>

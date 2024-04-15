@@ -219,10 +219,12 @@ const ExpensePageRight = () => {
         </LocalizationProvider>
       </DialogContent>
 
-      <Button  variant="contained"
+      <DialogActions>
+        <Button  variant="contained"
         color="warning" onClick={handleClose}>Cancel</Button>
           <Button  variant="contained"
         color="success" type="submit">Submit</Button>
+        </DialogActions>
     </Dialog>
   </React.Fragment>
   );

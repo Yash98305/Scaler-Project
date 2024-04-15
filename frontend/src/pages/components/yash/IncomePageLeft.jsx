@@ -32,56 +32,116 @@ const IncomePageLeft = () => {
     }, [api, token]);
   return (
     <>
-     <h2 style={{ textAlign: "center", marginTop: "20px" }}>Income Recordes</h2>
-            <div className='category_form'>
-                <Paper sx={{ width: '80%', margin: 'auto' }}>
-                    <TableContainer sx={{ maxHeight: 440, minHeight: 440 }}>
-                        <Table aria-label="sticky table">
-                        <TableHead sx={{position:"sticky"}}>
-                                <TableRow>
-                                    <TableCell align="center" colSpan={1}>
-                                        <Button>PDF</Button>
-                                    </TableCell>
-                                    <TableCell align="center" colSpan={1}>
-                                        <Button>Excel</Button>
-                                    </TableCell>
-                                    <TableCell align="center" colSpan={10}>
-                                    <Search/>
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableHead sx={{position:"sticky"}}>
-                                <TableRow>
-                                    <TableCell align="center">No.</TableCell>
-                                    <TableCell align="center">Name</TableCell>
-                                    <TableCell align="center">Date</TableCell>
-                                    <TableCell align="center">Amount</TableCell>
-                                    <TableCell align="center">Action</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody sx={{overflow:"hidden"}}>
-                                {income.length > 0 ? income.map((income, index) => (
-                                    <TableRow key={income.id}>
-                                        <TableCell align="center">{index + 1}</TableCell>
-                                        <TableCell align="center">{income.title}</TableCell>
-                                        <TableCell align="center">{income.income_date}</TableCell>
-                                        <TableCell align="center">{income.amount}</TableCell>
-                                        <TableCell align="center">{income.income}</TableCell>
-                                        <TableCell align="center">Edit/Delete</TableCell>
-                                    </TableRow>
-                                )) : (
-                                    <TableRow>
-                                        <TableCell colSpan={3} align="center">
-                                            {error || "No categories found"}
-                                        </TableCell>
-                                    </TableRow>
-                                )}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Paper>
-            </div>
-    </>
+     <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Incomes</h2>
+     <div className="category_form">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "90%",
+          }}
+        >
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th
+                    style={{
+                      width: "10%",
+                    }}
+                    align="center"
+                  >
+                    No.
+                  </th>
+                  <th
+                     style={{
+                      width: "38%",
+                    }}
+                    align="center"
+                  >
+                    Name
+                  </th>
+                  <th
+                     style={{
+                      width: "20%",
+                    }}
+                    align="center"
+                  >
+                   
+Date
+
+                  </th>
+                
+                  <th
+                   style={{
+                      width: "20%",
+                    }}
+                    align="center"
+                  >
+                   
+                   Amount
+
+
+                  </th>
+                
+                  <th align="center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {income.length > 0 ? (
+                  income.map((income, index) => (
+                    <tr key={income.id}>
+                      <td
+                        style={{
+                          width: "10%",
+                        }}
+                        align="center"
+                      >
+                        {index + 1}
+                      </td>
+                      <td
+                        style={{
+                          width: "38%",
+                        }}
+                        align="center"
+                      >
+                        {income.title}
+                      </td>
+                      <td
+                        style={{
+                          width: "20%",
+                        }}
+                        align="center"
+                      >
+                        {JSON.stringify(income.income_date).substring(1,11)}
+                      </td>
+                      <td
+                        style={{
+                          width: "20%",
+                        }}
+                        align="center"
+                      >
+                        {income.amount}
+                      </td>
+                      <td align="center">
+                        Edit/Delete
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={3} align="center">
+                      {error || "No categories found"}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+                </>
   )
 }
 

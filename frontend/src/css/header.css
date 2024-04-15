@@ -10,6 +10,7 @@
     background-color: aliceblue;
     z-index: 999;
 }
+
 .pages{
     width: 300px;
     display: flex;

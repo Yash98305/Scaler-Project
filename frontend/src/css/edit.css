@@ -32,7 +32,6 @@ border: 5px solid red;
     box-shadow: 4px 4px var(--main-color);
     background-color: var(--bg-color);
     border-radius: 10px;
-    overflow: hidden;
   }
   
   .button3, .button__icon, .button__text {
