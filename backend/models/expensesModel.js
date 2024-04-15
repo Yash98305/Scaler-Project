@@ -9,13 +9,16 @@ const expenseSchema = new mongoose.Schema(
       title: {
         type: String,
       },
+      amount: {
+        type: String,
+      },
       accountId: {
           type: mongoose.Types.ObjectId,
           ref : "Account"
       },
       categoryId: {
           type: mongoose.Types.ObjectId,
-          ref : "Categories"
+          ref : "Category"
       },
    expense_date :{
     type : Date
