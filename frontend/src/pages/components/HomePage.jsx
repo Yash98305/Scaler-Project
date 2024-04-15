@@ -3,7 +3,8 @@ import CreditCard from './vansh/CreditCard'
 
 const HomePage = () => {
   return (
-    <div>HomePage 
+    <div style={{width:"100%",height:"100%"}}>
+    HomePage 
     <CreditCard/>
     
     </div>
