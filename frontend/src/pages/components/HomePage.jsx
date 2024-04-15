@@ -1,8 +1,13 @@
 import React from 'react'
+import CreditCard from './vansh/CreditCard'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>HomePage 
+    <CreditCard/>
+    
+    </div>
+    
   )
 }
 
