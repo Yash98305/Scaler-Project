@@ -4,6 +4,7 @@ import Record from './Devendra/Record'
 
 const HomePage = () => {
   return (
+
     <div style={{ width: "100%", height: "100%", display: "flex", }}>
 
       <div className="leftCont" style={{ border: "2px solid red", width: "60%", margin: "10px", borderRadius: "30px", padding: "10px" }}>
@@ -28,8 +29,10 @@ const HomePage = () => {
       <div className="rightCont" style={{ border: "2px solid red", width: "40%", margin: "10px", borderRadius: "30px" }}>
 
       </div>
-    </div>
+    <div style={{width:"100%",height:"100%"}}>
 
+    </div>
+   </div>
   )
 }
 
