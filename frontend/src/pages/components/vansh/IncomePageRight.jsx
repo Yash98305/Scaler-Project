@@ -29,7 +29,7 @@ const IncomePageRight = () => {
   const [value, setValue] = React.useState(dayjs(new Date()));
   const [data, setData] = React.useState();
   const [error, setError] = React.useState("");
-
+  const [getAccount,setGetAccount] = React.useState()
   const token = JSON.parse(localStorage.getItem("auth")).token;
   const { api } = useAuth();
 
@@ -54,8 +54,22 @@ const IncomePageRight = () => {
       setError("Failed to load categories");
     }
   };
-  console.log(data);
+  const getAccountData = async () => {
+    try {
+      const res = await axios.get(`${api}/account/get`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      setGetAccount(res.data.account);
+    } catch (err) {
+      console.error("Failed to fetch categories:", err);
+      setError("Failed to load categories");
+    }
+  };
+  console.log(getAccount);
   React.useEffect(() => {
+    getAccountData();
     getCategoryData();
   }, []);
   const Submit = async (event) => {
@@ -82,7 +96,6 @@ const IncomePageRight = () => {
 
     handleClose();
   };
-
   return (
     <React.Fragment>
      <Button
@@ -163,13 +176,13 @@ const IncomePageRight = () => {
                 label="Account"
                 onChange={(e) => setAccount(e.target.value)}
               >
-                <MenuItem value={"661bb44f44b6accca15fda39"}>Others</MenuItem>
-                <MenuItem value={"661bb44f44b6accca15fda3d"}>
-                  Credit Card
-                </MenuItem>
-                <MenuItem value={"661bb44f44b6accca15fda3c"}>Cash</MenuItem>
-                <MenuItem value={"661bb44f44b6accca15fda3b"}>My Bank</MenuItem>
-                <MenuItem value={"661bb44f44b6accca15fda3a"}>PayPal</MenuItem>
+             {getAccount?.length > 0
+                  ? getAccount.map((data, index) => (
+                      <MenuItem value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                    ))
+                  : error || "No categories found"}
+
+                
               </Select>
             </FormControl>
           </Box>

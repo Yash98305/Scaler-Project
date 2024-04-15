@@ -40,6 +40,7 @@ const IncomePageLeft = () => {
 
     fetchCategories();
   }, [api, token]);
+  console.log(income);
   return (
     <>
       <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Incomes</h2>
@@ -108,11 +109,15 @@ const IncomePageLeft = () => {
                       <td
                         style={{
                           width: "38%",
+                          paddingLeft:"20px"
                         }}
-                        align="center"
+                     
                       >
-                      <div> {income.name}
-                      {income.accountId.account}
+                      <div className="incomename">
+                      <div>{income.title}</div>
+                      <div>{income.accountId.name}</div>
+                      <div> {income.categoryId.name}</div>
+
                        </div>
                        
                       </td>

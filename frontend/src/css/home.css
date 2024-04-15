@@ -202,3 +202,25 @@ tbody tr:nth-child(even) {
   align-items: flex-end;
   margin-top: 3px;
 }
+
+.incomename{
+  display: flex;
+  flex-direction: column;
+
+}
+.incomename>div:nth-child(1){
+  color: Green;
+  font-size: 20px;
+  text-transform:capitalize ;
+}
+.incomename>div:nth-child(2){
+  color: #888;
+  font-size: 15px;
+}
+.incomename>div:nth-child(3){
+  color: #888;
+
+  font-size: 15px;
+  text-transform:capitalize ;
+
+}
