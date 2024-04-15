@@ -16,21 +16,77 @@ const HomePage = () => {
             <CreditCard />
           </div>
 
-          <div style={{ border: "2px solid red", width: "50%" ,}}>
+          <div style={{ border: "2px solid red", width: "50%", }}>
             Upcoming Payments
-            <Record/>
+            <Record />
           </div>
 
         </div>
 
-        <div className="down-leftCont" style={{ border: "2px solid red", borderRadius: "30px", marginTop: "40px" }}>
+        <div className="down-leftCont" style={{ border: "2px solid red", borderRadius: "30px", marginTop: "40px", }}>
           Recent Transaction
+          <table style={{width:"100%",tableLayout:"fixed"}}>
+              <thead>
+                <tr>
+                  <th
+                    style={{
+                      width: "15%",
+                    }}
+                    align="center"
+                  >
+                    No.
+                  </th>
+                  <th
+                    style={{
+                      width: "60%",
+                    }}
+                    align="center"
+                  >
+                    Category
+                  </th>
+                  <th align="center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* {categories.length > 0 ? (
+                  categories.map((category, index) => (
+                    <tr key={category.id}>
+                      <td
+                        style={{
+                          width: "15%",
+                        }}
+                        align="center"
+                      >
+                        {index + 1}
+                      </td>
+                      <td
+                        style={{
+                          width: "60%",
+                        }}
+                        align="center"
+                      >
+                        {category.name}
+                      </td>
+                      <td style={{}} align="center">
+                        Edit/Delete
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={3} align="center">
+                      {error || "No categories found"}
+                    </td>
+                  </tr>
+                )} */}
+              </tbody>
+            </table>
         </div>
       </div>
       <div className="rightCont" style={{ border: "2px solid red", width: "40%", margin: "10px", borderRadius: "30px" }}>
 
       </div>
-   </div>
+    </div>
   )
 }
 
