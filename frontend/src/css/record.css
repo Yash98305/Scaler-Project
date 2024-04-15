@@ -1,0 +1,32 @@
+.d{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.d1{
+    background-color: #efe7e7;
+    padding: 20px;
+    height: 200px;
+    width: 150px;
+    border-radius: 15px;
+    line-height: 3;
+}
+.d1 h1{
+    color: green;
+}
+.d2{
+    background-color: #efe7e7;
+    padding: 20px;
+    height: 200px;
+    width: 150px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 15px;
+    line-height: 3;
+}
+.d2 h1{
+    color: red;
+}
+.d2 h3{
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+}
