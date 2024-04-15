@@ -1,39 +1,49 @@
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import React from 'react'
-import { useAuth } from '../../../context/auth';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import axios from 'axios';
-import Search from '../../Layout/Search';
+import {
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import React from "react";
+import { useAuth } from "../../../context/auth";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import Search from "../../Layout/Search";
 
 const IncomePageLeft = () => {
-    const { api } = useAuth();
-    const [income, SetIncome] = useState([]);
-    const [error, setError] = useState('');
-    const token = JSON.parse(localStorage.getItem("auth")).token;
+  const { api } = useAuth();
+  const [income, SetIncome] = useState([]);
+  const [error, setError] = useState("");
+  const token = JSON.parse(localStorage.getItem("auth")).token;
 
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const res = await axios.get(`${api}/income/get`, {
-                    headers: {
-                        Authorization: token,
-                    }
-                });
-                console.log(res.data.income);
-                SetIncome(res.data.income); // Assuming res.data contains the categories array
-            } catch (err) {
-                console.error('Failed to fetch categories:', err);
-                setError('Failed to load categories');
-            }
-        };
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get(`${api}/income/get`, {
+          headers: {
+            Authorization: token,
+          },
+        });
+        console.log(res);
+        console.log(res.data.income);
+        SetIncome(res.data.income); // Assuming res.data contains the categories array
+      } catch (err) {
+        console.error("Failed to fetch categories:", err);
+        setError("Failed to load categories");
+      }
+    };
 
-        fetchCategories();
-    }, [api, token]);
+    fetchCategories();
+  }, [api, token]);
   return (
     <>
-     <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Incomes</h2>
-     <div className="category_form">
+      <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Incomes</h2>
+      <div className="category_form">
         <div
           style={{
             display: "flex",
@@ -55,7 +65,7 @@ const IncomePageLeft = () => {
                     No.
                   </th>
                   <th
-                     style={{
+                    style={{
                       width: "38%",
                     }}
                     align="center"
@@ -63,28 +73,23 @@ const IncomePageLeft = () => {
                     Name
                   </th>
                   <th
-                     style={{
+                    style={{
                       width: "20%",
                     }}
                     align="center"
                   >
-                   
-Date
-
+                    Date
                   </th>
-                
+
                   <th
-                   style={{
+                    style={{
                       width: "20%",
                     }}
                     align="center"
                   >
-                   
-                   Amount
-
-
+                    Amount
                   </th>
-                
+
                   <th align="center">Action</th>
                 </tr>
               </thead>
@@ -106,7 +111,10 @@ Date
                         }}
                         align="center"
                       >
-                        {income.title}
+                      <div> {income.name}
+                      {income.accountId.account}
+                       </div>
+                       
                       </td>
                       <td
                         style={{
@@ -114,7 +122,7 @@ Date
                         }}
                         align="center"
                       >
-                        {JSON.stringify(income.income_date).substring(1,11)}
+                        {JSON.stringify(income.income_date).substring(1, 11)}
                       </td>
                       <td
                         style={{
@@ -124,9 +132,7 @@ Date
                       >
                         {income.amount}
                       </td>
-                      <td align="center">
-                        Edit/Delete
-                      </td>
+                      <td align="center">Edit/Delete</td>
                     </tr>
                   ))
                 ) : (
@@ -141,8 +147,8 @@ Date
           </div>
         </div>
       </div>
-                </>
-  )
-}
+    </>
+  );
+};
 
-export default IncomePageLeft
+export default IncomePageLeft;

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const categoriesSchema = new mongoose.Schema(
+const categorySchema = new mongoose.Schema(
     {
         userId: {
             type: mongoose.Schema.Types.ObjectId,
@@ -24,4 +24,4 @@ const categoriesSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
-module.exports = mongoose.model("Categories", categoriesSchema);
+module.exports = mongoose.model("Category", categorySchema);
