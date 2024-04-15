@@ -1,5 +1,6 @@
 import React from 'react'
 import CreditCard from './vansh/CreditCard'
+import Record from './Devendra/Record'
 
 const HomePage = () => {
   return (
@@ -28,6 +29,13 @@ const HomePage = () => {
 
       </div>
 
+<<<<<<< HEAD
+    
+    Dashboard
+    <CreditCard/>
+    <Record/>
+=======
+>>>>>>> d6b880900270461e403e8a03430e6374f6d614f5
     </div>
 
   )
