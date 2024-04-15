@@ -9,12 +9,12 @@ const HomePage = () => {
 
         <div className="upper-leftCont" style={{ display: "flex" ,justifyContent:"space-around"}}>
 
-          <div style={{ border: "2px solid red" }}>
+          <div style={{ border: "2px solid red" ,width:"50%"}}>
             Dashboard
             <CreditCard />
           </div>
 
-          <div style={{ border: "2px solid red" }}>
+          <div style={{ border: "2px solid red" ,width:"50%"}}>
             Upcoming Payments
           </div>
 
