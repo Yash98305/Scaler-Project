@@ -5,13 +5,40 @@ const catchAsyncError = require("../middlewares/catchAsyncError");
 
 exports.createController = catchAsyncError(async(req,res,next)=>{
     const userId = req.user._id
-    const {name,type,budget} = req.body
-    const category = new Category({name,type,budget,userId})
-await category.save();
+    const cash= {
+        userId,
+        name: "Cash",
+        balance: 0,
+        type: "My Cash",
+        status: "Active"
+    }
+    const bank ={
+        userId,
+        name: "Bank",
+        balance: 0,
+        type: "My Bank",
+        status: "Active"
+    }
+    const paypal ={
+        userId,
+        name: "Paypal",
+        balance: 0,
+        type: "My E-Wallet",
+        status: "Active"
+    }
+    const other ={
+        userId,
+        name: "Others",
+        balance: 0,
+        type: "Others",
+        status: "Active"
+    }
+    const account = await new Account([cash,bank,other,paypal]).save()
+
 res.status(201).send({
     success: true,
     message: "Category added successfully",
-    category
+    account
 })
 })
 
