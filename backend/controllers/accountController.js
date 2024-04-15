@@ -2,9 +2,14 @@ const Income = require("../models/incomeModel.js");
 const Account = require("../models/accountsModel.js");
 const Category = require("../models/categoriesModel.js");
 const catchAsyncError = require("../middlewares/catchAsyncError");
+const ErrorHandler = require("../utils/errorHandler.js");
 
 exports.createController = catchAsyncError(async(req,res,next)=>{
     const userId = req.user._id
+    const e = Account.findById(userId)
+    if(e){
+        return next(new ErrorHandler("Account is already associated",400))
+    }
     const cash= {
         userId,
         name: "Cash",
@@ -33,12 +38,14 @@ exports.createController = catchAsyncError(async(req,res,next)=>{
         type: "Others",
         status: "Active"
     }
-    const account = await new Account([cash,bank,other,paypal]).save()
+    await new Account(cash).save()
+    await new Account(bank).save()
+    await new Account(other).save()
+    await new Account(paypal).save()
 
 res.status(201).send({
     success: true,
-    message: "Category added successfully",
-    account
+    message: "Account Created for this user is successfully",
 })
 })
 
