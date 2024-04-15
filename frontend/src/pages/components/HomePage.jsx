@@ -1,5 +1,6 @@
 import React from 'react'
 import CreditCard from './vansh/CreditCard'
+import Record from './Devendra/Record'
 
 const HomePage = () => {
   return (
@@ -8,7 +9,7 @@ const HomePage = () => {
     
     Dashboard
     <CreditCard/>
-    
+    <Record/>
     </div>
     
   )
