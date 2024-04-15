@@ -13,7 +13,7 @@ function Record() {
       <div className='d2'>
         <CreditCardIcon style={{fontSize:"43px"}} />
         <h3>Expense</h3>
-        <h1>+ Rs 0</h1>
+        <h1>- Rs 0</h1>
       </div>
 
     </div>
