@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import Search from '../../Layout/Search';
 
-const ExpensePageLeft = () => {
+const ExpensePageLeft = ({open}) => {
     const { api } = useAuth();
     const [income, SetIncome] = useState([]);
     const [error, setError] = useState('');
@@ -15,13 +15,13 @@ const ExpensePageLeft = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await axios.get(`${api}/income/get`, {
+                const res = await axios.get(`${api}/expense/get`, {
                     headers: {
                         Authorization: token,
                     }
                 });
-                console.log(res.data.income);
-                SetIncome(res.data.income); // Assuming res.data contains the categories array
+                console.log(res.data);
+                SetIncome(res.data.expense); // Assuming res.data contains the categories array
             } catch (err) {
                 console.error('Failed to fetch categories:', err);
                 setError('Failed to load categories');
@@ -29,7 +29,7 @@ const ExpensePageLeft = () => {
         };
 
         fetchCategories();
-    }, [api, token]);
+    }, [api, token,open]);
   return (
     <>
     <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Expenses</h2>
@@ -103,10 +103,16 @@ Date
                       <td
                         style={{
                           width: "38%",
+                          paddingLeft:"20px"
+
                         }}
-                        align="center"
                       >
-                        {income.title}
+                        <div className="incomename">
+                      <div>{income.title}</div>
+                      <div>{income.accountId.name}</div>
+                      <div> {income.categoryId.name}</div>
+
+                       </div>
                       </td>
                       <td
                         style={{
@@ -114,7 +120,7 @@ Date
                         }}
                         align="center"
                       >
-                        {JSON.stringify(income.income_date).substring(1,11)}
+                        {JSON.stringify(income.expense_date).substring(1,11)}
                       </td>
                       <td
                         style={{
