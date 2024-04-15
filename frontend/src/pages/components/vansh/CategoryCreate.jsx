@@ -14,8 +14,7 @@ import axios from "axios";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { useAuth } from "../../../context/auth";
 
-const CategoryCreate = () => {
-  const [open, setOpen] = React.useState(false);
+const CategoryCreate = ({open,setOpen}) => {
   const [type, setType] = React.useState("");
   const [name, setName] = React.useState("");
   const token = JSON.parse(localStorage.getItem("auth")).token;

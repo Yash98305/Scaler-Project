@@ -11,30 +11,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Hidden } from "@mui/material";
 import "../../../css/home.css";
-const CategoryForm = () => {
-  const { api } = useAuth();
-  const [categories, setCategories] = useState([]);
-  const [error, setError] = useState("");
-  const token = JSON.parse(localStorage.getItem("auth")).token;
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await axios.get(`${api}/category/getcategory`, {
-          headers: {
-            Authorization: token,
-          },
-        });
-        console.log(res.data.categories);
-        setCategories(res.data.categories); // Assuming res.data contains the categories array
-      } catch (err) {
-        console.error("Failed to fetch categories:", err);
-        setError("Failed to load categories");
-      }
-    };
-
-    fetchCategories();
-  }, [api, token]); // Depend on api and token for re-fetching when these values change
+const CategoryForm = ({setError,error,setCategories,categories}) => {
 
   return (
     <>

@@ -19,8 +19,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
-const ExpensePageRight = () => {
-  const [open, setOpen] = React.useState(false);
+const ExpensePageRight = ({open,setOpen}) => {
   const [title, setTitle] = React.useState("");
   const [amount, setAmount] = React.useState("");
   const [account, setAccount] = React.useState("");

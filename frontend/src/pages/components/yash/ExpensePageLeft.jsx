@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import Search from '../../Layout/Search';
 
-const ExpensePageLeft = () => {
+const ExpensePageLeft = ({open}) => {
     const { api } = useAuth();
     const [income, SetIncome] = useState([]);
     const [error, setError] = useState('');
@@ -29,7 +29,7 @@ const ExpensePageLeft = () => {
         };
 
         fetchCategories();
-    }, [api, token]);
+    }, [api, token,open]);
   return (
     <>
     <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Expenses</h2>

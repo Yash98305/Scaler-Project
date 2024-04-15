@@ -7,12 +7,17 @@
 body{
   overflow: hidden;
 }
-
+.Card-container {
+  height: 190px !important;
+}
 li > a {
   color: black;
   font-weight: 600;
   text-decoration: none;
   padding-left: 10px;
+}
+a:active{
+  background-color: aqua;
 }
 .home_con {
   height: 100vh;

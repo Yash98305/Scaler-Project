@@ -15,7 +15,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import Search from "../../Layout/Search";
 
-const IncomePageLeft = () => {
+const IncomePageLeft = ({open,setOpen}) => {
   const { api } = useAuth();
   const [income, SetIncome] = useState([]);
   const [error, setError] = useState("");
@@ -39,7 +39,7 @@ const IncomePageLeft = () => {
     };
 
     fetchCategories();
-  }, [api, token]);
+  }, [api, token,open]);
   console.log(income);
   return (
     <>
