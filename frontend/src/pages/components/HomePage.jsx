@@ -7,17 +7,15 @@ const HomePage = () => {
 
     <div style={{ width: "100%", height: "100%", display: "flex", }}>
 
-      <div className="leftCont" style={{ border: "2px solid red", width: "60%", margin: "10px", borderRadius: "30px", padding: "10px" }}>
+      <div className="leftCont" style={{ border: "2px solid red", width: "60%",  padding: "5px" }}>
 
-        <div className="upper-leftCont" style={{ display: "flex", justifyContent: "space-around" }}>
+        <div className="upper-leftCont" style={{ display: "flex", justifyContent: "space-around"}}>
 
-          <div style={{ border: "2px solid red", width: "50%" }}>
-            Dashboard
+          <div style={{ border: "2px solid red", width: "50%", display:"flex",alignItems:"center", justifyContent:"center" , padding:'10px 0px'}}>
             <CreditCard />
           </div>
 
-          <div style={{ border: "2px solid red", width: "50%", }}>
-            Upcoming Payments
+          <div style={{ border: "2px solid red", width: "50%", display:"flex",justifyContent:"space-around" , padding:'10px 0px'}}>
             <Record />
           </div>
 

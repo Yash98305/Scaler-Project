@@ -3,7 +3,7 @@ import Card from 'react-credit-card-payment'
 
 const CreditCard = () => {
   return (
-    <div>
+    <>
     <Card 
       bankName='Axis Bank'
       cardHolder='Vansh Verma'
@@ -11,7 +11,7 @@ const CreditCard = () => {
       issuer='mastercard'
       theme='dark'
     />
-    </div>
+    </>
   )
 }
 
