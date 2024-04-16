@@ -169,7 +169,7 @@ const HomePage = () => {
         className="rightCont"
         style={{width: "35%",backgroundColor:"#EEEDEB",height:"93%",margin:"15px",borderRadius:"25px",marginLeft:"30px", marginTop:"22px" }}
       >
-        <LineChart/>
+        {/* <LineChart/> */}
       </div>
     </div>
   );
