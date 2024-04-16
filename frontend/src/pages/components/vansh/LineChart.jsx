@@ -9,15 +9,29 @@ class LineChart extends Component {
 		const options = {
 			animationEnabled: true,
 			title:{
-				text: "Monthly Sales - 2017"
+				text: "Spent this today"
 			},
 			axisX: {
-				valueFormatString: "MMM"
+				lineThickness: 1,
+                lineColor: "#DBDDDC ",
+                labelFontColor: "#DBDDDC",
+                tickLength: 0,
 			},
 			axisY: {
-				title: "Sales (in USD)",
-				prefix: "$"
+				lineThickness: 1,
+                lineColor: "#DBDDDC ",
+                labelFontColor: "#DBDDDC",
+                tickLength: 0,
 			},
+            color: "blue",
+			// axisY: {
+			// 	title: "Sales (in USD)",
+			// 	prefix: "$"
+			// },
+            
+            backgroundColor:"#EEEDEB",
+            height:230,
+            width: 300,
 			data: [{
 				yValueFormatString: "$#,###",
 				xValueFormatString: "MMMM",

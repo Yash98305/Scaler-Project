@@ -6,6 +6,7 @@ import { useAuth } from "../../context/auth";
 import axios from "axios";
 import { useState } from "react";
 import CurrencyRupeeRoundedIcon from '@mui/icons-material/CurrencyRupeeRounded';
+import LineChart from "./vansh/LineChart";
 const HomePage = () => {
   const { api, auth } = useAuth();
   const [income, setIncome] = useState();
@@ -170,30 +171,7 @@ const HomePage = () => {
         className="rightCont"
         style={{width: "35%",backgroundColor:"#EEEDEB",height:"93%",margin:"15px",borderRadius:"25px",marginLeft:"30px", marginTop:"22px" }}
       >
-        <PieChart
-          series={[
-            {
-              data: [
-                {
-                  value: Math.floor((expense / income) * 100),
-                  label: "Expense",
-                },
-                {
-                  value: Math.floor(((income - expense) / income) * 100),
-                  label: "Savings",
-                },
-              ],
-              innerRadius: 78,
-              outerRadius: 98,
-              paddingAngle: 1,
-              cornerRadius: 51,
-              startAngle: 0,
-              endAngle: 360,
-              cx: 150,
-              cy: 150,
-            },
-          ]}
-        />
+        <LineChart/>
       </div>
     </div>
   );
