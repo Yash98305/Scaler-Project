@@ -7,6 +7,12 @@ import axios from "axios";
 import { useState } from "react";
 import CurrencyRupeeRoundedIcon from '@mui/icons-material/CurrencyRupeeRounded';
 import LineChart from "./vansh/LineChart";
+import img from "../../css/income.png"
+import img2 from "../../css/expenses.png"
+import MovingIcon from '@mui/icons-material/Moving';
+
+
+
 const HomePage = () => {
   const { api, auth } = useAuth();
   const [income, setIncome] = useState();
@@ -65,7 +71,7 @@ const HomePage = () => {
         <div
           className="upper-leftCont"
           style={{ display: "flex", justifyContent: "space-around" }}
-        >
+        > 
           <div
             style={{
               width: "50%",
@@ -74,7 +80,7 @@ const HomePage = () => {
               justifyContent: "center",
               padding: "10px 0px",
             }}
-          >
+          > 
             <CreditCard />
           </div>
 
@@ -85,10 +91,10 @@ const HomePage = () => {
               padding: "10px 0px",
             }}
           >
-            <Record amount={1200} icon={<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><rect height="7" width="3" x="4" y="10"/><rect height="7" width="3" x="10.5" y="10"/><rect height="3" width="20" x="2" y="19"/><rect height="7" width="3" x="17" y="10"/><polygon points="12,1 2,6 2,8 22,8 22,6"/></g></g></svg>
-} name={"Income"} style={{marginRight:"6"}}/>
-            <Record amount={1200} icon={<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><rect height="7" width="3" x="4" y="10"/><rect height="7" width="3" x="10.5" y="10"/><rect height="3" width="20" x="2" y="19"/><rect height="7" width="3" x="17" y="10"/><polygon points="12,1 2,6 2,8 22,8 22,6"/></g></g></svg>
-} name={"Expense"} />
+            <Record amount={1200} icon={<img style={{height:"30px", margin:"6px", marginLeft:"10px",}} src={img}/> 
+            } name={"Income"} style={{ marginRight: "6" }} />
+            <Record amount={1200} icon={<img style={{height:"30px", margin:"6px", marginLeft:"10px", }} src={img2}/>
+            } name={"Expense"}/>
           </div>
         </div>
 
@@ -110,10 +116,10 @@ const HomePage = () => {
             >
               {currentTransaction?.length > 0 ? (
                 currentTransaction.map((income, index) => (
-                  <tr key={income.id}  style={{
-             
-                border: "2px solid red",
-              }}>
+                  <tr key={income.id} style={{
+
+                    border: "2px solid red",
+                  }}>
                     <td
                       style={{
                         width: "10%",
@@ -144,11 +150,11 @@ const HomePage = () => {
                         JSON.stringify(income.expense_date)?.substring(1, 11)}
                     </td>
                     <td
-                     
+
                       align="center"
                     >
-                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                      <CurrencyRupeeRoundedIcon sx={{fontSize:17}}/> {income.amount}
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <CurrencyRupeeRoundedIcon sx={{ fontSize: 17 }} /> {income.amount}
                       </div>
                     </td>
                   </tr>
@@ -167,7 +173,7 @@ const HomePage = () => {
 
       <div
         className="rightCont"
-        style={{width: "35%",backgroundColor:"#EEEDEB",height:"93%",margin:"15px",borderRadius:"25px",marginLeft:"30px", marginTop:"22px" }}
+        style={{ width: "35%", backgroundColor: "#EEEDEB", height: "93%", margin: "15px", borderRadius: "50px", marginLeft: "30px", marginTop: "22px" }}
       >
         {/* <LineChart/> */}
       </div>

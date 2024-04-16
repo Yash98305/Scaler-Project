@@ -7,9 +7,9 @@ function Record({icon,name,amount}) {
   return (
 
       <div className='d1'>
-      {icon}
+        <div className='dark-blue-iconbg'>{icon}</div>
         <h3>{name}</h3>
-        <h1><CurrencyRupeeIcon/> {amount}</h1>
+        <h2><CurrencyRupeeIcon/> {amount}</h2>
       </div>
 
   )
