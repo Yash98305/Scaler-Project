@@ -3,6 +3,7 @@ const catchAsyncErrors = require("../middlewares/catchAsyncError.js");
 const User = require("../models/uerModel.js");
 const sendToken = require("../jwtToken/jwtToken.js");
 const fs = require("fs");
+const Account = require("../models/accountsModel.js");
 
 
 
@@ -35,7 +36,46 @@ exports.userRegisterController = catchAsyncErrors(async (req, res, next) => {
     const user = new User({
       name,phone, email, password
     });
-    await user.save(); 
+   const t= await user.save();
+   const userId = t._id
+   const e = await Account.findOne({userId});
+   console.log(e);
+   if(e){
+       return next(new ErrorHandler("Account is already associated",200))
+   }
+   const cash= {
+       userId,
+       name: "Cash",
+       balance: 0,
+       type: "My Cash",
+       status: "Active"
+   }
+   const bank ={
+       userId,
+       name: "Bank",
+       balance: 0,
+       type: "My Bank",
+       status: "Active"
+   }
+   const paypal ={
+       userId,
+       name: "Paypal",
+       balance: 0,
+       type: "My E-Wallet",
+       status: "Active"
+   }
+   const other ={
+       userId,
+       name: "Others",
+       balance: 0,
+       type: "Others",
+       status: "Active"
+   }
+   await new Account(cash).save()
+   await new Account(bank).save()
+   await new Account(other).save()
+   await new Account(paypal).save()
+
     sendToken(user, 201, res);
 });
 
@@ -202,3 +242,15 @@ console.log(data);
     data
   });
 })
+
+exports.updateGoles = catchAsyncErrors(async(req,res,next)=>{
+const userId = req.user._id;
+  const {monthly_spending,annual_spending,monthly_saving,monthly_earning} = req.body;
+await User.findByIdAndUpdate(userId,{
+  monthly_spending,annual_spending,monthly_saving,monthly_earning
+})
+res.status(201).json({
+  success: true,
+  message:"Your goles updated successfully"
+})
+});
