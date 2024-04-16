@@ -6,5 +6,6 @@ const {isAuthenticatedUser} = require("../middlewares/authMiddlewaresUser.js")
 
 router.route('/create').post(isAuthenticatedUser,pages.createController)
 router.route('/get').get(isAuthenticatedUser,pages.getController)
+router.route('/gettotalincome').get(isAuthenticatedUser,pages.getTotalIncomeOfUser)
 
 module.exports = router

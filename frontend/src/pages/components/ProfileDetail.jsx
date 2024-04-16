@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "../../css/profile.css";
 import Pro from "./Pro.jsx"
+import Avatar from '@mui/material/Avatar';
+
 const ProfileDetail = () => {
+  const userId = JSON.parse(localStorage.getItem("auth")).user._id;
   const props = JSON.parse(localStorage.getItem("auth")).user
   const avatar = props.avatar;
   const [edit,setEdit] = useState(false);
@@ -14,16 +17,13 @@ setEdit(!edit)
     {edit?<Pro setEdit={setEdit}/>:""}
     
       <div className="space"></div>
-      <div className="pro_con">
-        <div>
-          <img
-src={
+
+      <Avatar style={{border:"2px solid black",zIndex:"11 !important"}}  sx={{ width: 240, height: 240 }} src={
               !props.photo
                 ? avatar
                 : `http://localhost:8000/api/v1/user/photo/${props._id}`
-            }            alt=""
-          />
-        </div>
+            }   alt="error" />
+       <div>
         <div class="notedit container">
           <div class="text">Your Profile</div>
           <div className="btn1_con">

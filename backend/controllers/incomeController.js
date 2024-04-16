@@ -32,3 +32,23 @@ exports.getController = catchAsyncErrors(async(req,res,next)=>{
         income,
     });
 })
+exports.deleteIncome = catchAsyncErrors(async (req, res) =>{
+    const {id} = req.params;
+    await Income.findByIdAndDelete(id)
+            res.status(200).json({
+                success : true,
+                message: 'Income Deleted'
+            })
+})
+exports.getTotalIncomeOfUser = catchAsyncErrors(async (req, res) =>{
+    const userId = req.user._id
+    const income = await Income.find({userId}).populate("accountId").populate("categoryId")
+    const totalIncome = income.reduce((a,b)=>{
+        return Number(a)+Number(b.amount)
+    },0)
+    res.status(200).send({
+        success: true,
+        message: "income fetched successfully",
+        totalIncome
+    });
+})

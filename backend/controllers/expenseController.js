@@ -25,3 +25,24 @@ exports.getController = catchAsyncErrors(async(req,res,next)=>{
         expense,
     });
 })
+
+exports.deleteExpense = catchAsyncErrors( async (req, res) =>{
+    const {id} = req.params;
+    await Expense.findByIdAndDelete(id)
+    
+            res.status(200).json({
+                success: true,
+                message: 'Expense Deleted'})
+        })
+exports.getTotalExpenseOfUser = catchAsyncErrors(async (req, res) =>{
+            const userId = req.user._id
+            const expense = await Expense.find({userId}).populate("accountId").populate("categoryId")
+            const totalExpense = expense.reduce((a,b)=>{
+                return Number(a)+Number(b.amount)
+            },0)
+            res.status(200).send({
+                success: true,
+                message: "income fetched successfully",
+                totalExpense
+            });
+        })
