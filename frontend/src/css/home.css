@@ -13,10 +13,12 @@ body{
 .Card-container {
   height: 190px !important;
 }
-li > a {
-  color: black;
+a {
   font-weight: 600;
   text-decoration: none;
+}
+a span{
+  font-weight: 900;
   padding-left: 10px;
 }
 a:active{
@@ -29,7 +31,7 @@ a:active{
   justify-content: center;
   align-items: center;
   z-index: 0;
-  background-color: rgb(208, 208, 208);
+  background-color: #EEEDEB;
 }
 .home_con > div {
   height: 100vh;
@@ -55,14 +57,14 @@ a:active{
 }
 .vertical_nav {
   width: 200px;
-  height: 100vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
 .vertical_nav ul:nth-child(1) {
-  height: 380px;
+  height: 430px;
 }
 .vertical_nav ul li {
   margin-bottom: 20px;
@@ -74,7 +76,7 @@ a:active{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(208, 208, 208);
+  background-color: #EEEDEB;
 }
 .page > div {
   width: 97%;
@@ -87,11 +89,17 @@ a:active{
 }
 li {
   height: 40px;
+ padding: 0px 10px;
+ border-radius: 20px;
   letter-spacing: 2px;
   display: flex;
   align-items: center;
 }
 
+ul li:hover{
+  background-color: #DBDDDC;
+  cursor: pointer;
+}
 /* category_page */
 
 .category_page {
