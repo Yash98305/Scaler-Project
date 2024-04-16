@@ -2,7 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Questrial", sans-serif !important;
+  color: #2E335B;
 }
+
 
 body{
   overflow: hidden;

@@ -48,7 +48,7 @@ console.log(auth);
       <div className="home_con">
         <div>
           <div className="horizontal_nav">
-            <div>logo</div>
+            <div style={{fontWeight:"bolder",fontSize:"30px"}}>CashSavvy</div>
             <div><Search/></div>
             <div className="horizontal_nav_1">
               <div style={{paddingRight:"20px"}}><NotificationsActiveRoundedIcon color="secondary"/></div>
