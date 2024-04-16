@@ -185,17 +185,14 @@ const Expense = require("../models/expensesModel.js");
 
 exports.currentTransaction = catchAsyncErrors(async (req,res) => {
   const userId = req.user._id
-  const expense = await Expense.find({userId});
-  const income = await Income.find({userId});
-console.log(expense);
-console.log(income);
+  const income = await Income.find({userId}).populate("accountId").populate("categoryId")
+  const expense = await Expense.find({userId}).populate("accountId").populate("categoryId")
   const data = [
     ...expense,...income
   ]
   data.sort((a, b) => {
     let dateA = a.createdAt 
     let dateB = b.createdAt 
-
     return new Date(dateB) - new Date(dateA); 
 });
 

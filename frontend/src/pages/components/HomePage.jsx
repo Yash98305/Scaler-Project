@@ -11,8 +11,6 @@ const HomePage = () => {
   const { api, auth } = useAuth();
   const [income, setIncome] = useState();
   const [expense, setExpense] = useState();
-  const [savingp, setSavingp] = useState();
-  const [expensep, setExpensep] = useState();
   const [currentTransaction, setCurrentTransaction] = useState();
   const token = JSON.parse(localStorage.getItem("auth")).token;
   const getIncome = async () => {
