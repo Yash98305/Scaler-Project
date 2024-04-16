@@ -13,8 +13,9 @@ import Select from "@mui/material/Select";
 import axios from "axios";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { useAuth } from "../../../context/auth";
+import PieChart from "./PieChart";
 
-const CategoryCreate = ({open,setOpen}) => {
+const CategoryCreate = ({ open, setOpen }) => {
   const [type, setType] = React.useState("");
   const [name, setName] = React.useState("");
   const token = JSON.parse(localStorage.getItem("auth")).token;
@@ -30,7 +31,7 @@ const CategoryCreate = ({open,setOpen}) => {
   const handleClose = () => {
     setOpen(false);
   };
-  React.useEffect(() => {}, [name]);
+  React.useEffect(() => { }, [name]);
   const Submit = async (event) => {
     event.preventDefault();
     const data = {
@@ -53,90 +54,99 @@ const CategoryCreate = ({open,setOpen}) => {
   };
 
   return (
-    <React.Fragment>
-      <Button
-        sx={{ float: "right", margin: "30px 40px", display: "flex" }}
-        variant="contained"
-        color="success"
-        onClick={handleClickOpen}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            fontSize: "15px",
-          }}
-        >
-          <AddCircleOutlineOutlinedIcon
-            sx={{ fontSize: "23px", marginRight: "4px" }}
-          />
-          Add Category
-        </div>
-      </Button>
+    <>
+      <div>
+        <React.Fragment>
+          <Button
+            sx={{ float: "right", margin: "30px 40px", display: "flex" }}
+            variant="contained"
+            color="success"
+            onClick={handleClickOpen}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                fontSize: "15px",
+              }}
+            >
+              <AddCircleOutlineOutlinedIcon
+                sx={{ fontSize: "23px", marginRight: "4px" }}
+              />
+              Add Category
+            </div>
+          </Button>
 
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          component: "form",
-          onSubmit: Submit,
-        }}
-      >
-        <DialogTitle
-          sx={{ minWidth: "400px", backgroundColor: "green", color: "white" }}
-        >
-          Add Category
-        </DialogTitle>
-        <DialogContent>
-          <TextField
-                    sx={{marginTop:"20px"}}
-
-            autoFocus
-            required
-            margin="dense"
-            id="category"
-            name="category"
-            label="Category Name"
-            type="text"
-            fullWidth
-            value={name}
-            variant="standard"
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+              component: "form",
+              onSubmit: Submit,
+            }}
+          >
+            <DialogTitle
+              sx={{ minWidth: "400px", backgroundColor: "green", color: "white" }}
+            >
+              Add Category
+            </DialogTitle>
+            <DialogContent>
+              <TextField
                 sx={{ marginTop: "20px" }}
-                id="demo-simple-select-label"
-              >
-                Type
-              </InputLabel>
-              <Select
-                sx={{ marginTop: "20px" }}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={type}
-                label="Type"
-                onChange={handleChange}
-              >
-                <MenuItem value={"income"}>Income</MenuItem>
-                <MenuItem value={"expense"}>Expense</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </DialogContent>
 
-        <DialogActions>
-       
-          <Button  variant="contained"
-        color="warning" onClick={handleClose}>Cancel</Button>
-          <Button  variant="contained"
-        color="success" type="submit">Submit</Button>
-        </DialogActions>
-      </Dialog>
-    </React.Fragment>
+                autoFocus
+                required
+                margin="dense"
+                id="category"
+                name="category"
+                label="Category Name"
+                type="text"
+                fullWidth
+                value={name}
+                variant="standard"
+                onChange={(e) => setName(e.target.value)}
+              />
+
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel
+                    sx={{ marginTop: "20px" }}
+                    id="demo-simple-select-label"
+                  >
+                    Type
+                  </InputLabel>
+                  <Select
+                    sx={{ marginTop: "20px" }}
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={type}
+                    label="Type"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={"income"}>Income</MenuItem>
+                    <MenuItem value={"expense"}>Expense</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </DialogContent>
+
+            <DialogActions>
+
+              <Button variant="contained"
+                color="warning" onClick={handleClose}>Cancel</Button>
+              <Button variant="contained"
+                color="success" type="submit">Submit</Button>
+            </DialogActions>
+          </Dialog>
+
+
+        </React.Fragment>
+      </div>
+      <div>
+        <PieChart />
+      </div>
+    </>
   );
 };
 
