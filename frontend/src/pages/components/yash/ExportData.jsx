@@ -3,6 +3,7 @@ import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { useAuth } from '../../../context/auth';
 import axios from 'axios';
+import Button from "@mui/material/Button";
 
 const ExportData = () => {
     const { api, auth } = useAuth();
@@ -48,9 +49,12 @@ const ExportData = () => {
     };
    
   return (
-    <div className="App">
-    <button onClick={exportToExcel}>Export as Excel</button>
-</div>  )
+    <Button
+    sx={{ float: "right", margin: "30px 40px", display: "flex" }}
+    variant="contained"
+    color="success"
+    onClick={exportToExcel}
+  >Export To Excel</Button>)
 }
 
 export default ExportData

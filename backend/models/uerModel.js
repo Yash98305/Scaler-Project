@@ -38,15 +38,19 @@ status : {
 },
 monthly_spending :{
   type: String,
+  default:0
 },
 annual_spending :{
   type: String,
+  default:0
 },
 monthly_saving :{
   type: String,
+  default:0
 },
 monthly_earning :{
   type: String,
+  default:0
 },
 currency:{
   type: String,

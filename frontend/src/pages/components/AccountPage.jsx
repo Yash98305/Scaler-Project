@@ -1,16 +1,17 @@
 import React from 'react'
 import AccountLeft from './yash/AccountLeft'
-import AccountRight from './vansh/AccountRight'
+import ExportData from './yash/ExportData'
 
 const AccountPage = () => {
+
   return (<>
     <div className='category_page'>
     <div className='category_page_left'>
-      <AccountLeft/>
+      <AccountLeft />
     </div>
     <div className='category_page_right'>
-    <AccountRight/>
 
+<ExportData/>
     </div>
     </div>
     </>
