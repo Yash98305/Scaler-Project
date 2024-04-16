@@ -6,7 +6,6 @@
   "scripts": {
     "server": "npm start --prefix backend",
     "client": "npm start --prefix frontend",
-    "socket": "npm start --prefix socket",
     "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
