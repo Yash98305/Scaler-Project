@@ -11,6 +11,7 @@ const HomePage = () => {
   const[expense,setExpense] = useState();
   const[savingp,setSavingp] = useState();
   const[expensep,setExpensep] = useState();
+  const[currentTransaction,setCurrentTransaction] = useState();
   const token = JSON.parse(localStorage.getItem("auth")).token;
   const getIncome = async()=>{
 try{
@@ -20,6 +21,19 @@ const res = await axios.get(`${api}/income/gettotalincome`,{
   }
 })
 setIncome(res.data.totalIncome);
+}catch(e){
+  console.log(e)
+}
+  }
+  const getcurrentTransaction = async()=>{
+try{
+const res = await axios.get(`${api}/user/currenttransaction`,{
+  headers:{
+    Authorization: token
+  }
+})
+console.log(res.data.data);
+setCurrentTransaction(res.data.data);
 }catch(e){
   console.log(e)
 }
@@ -40,7 +54,7 @@ setExpense(res.data.totalExpense);
   useEffect(()=>{
     getExpense()
    getIncome()
-
+getcurrentTransaction()
   },[auth])
  
 console.log(expense,income);
@@ -64,36 +78,16 @@ console.log(expense,income);
         </div>
 
          <h3 style={{margin:"5px 0px 10px 5px"}}>Recent Transaction</h3> 
-        <div className="down-leftCont" style={{borderRadius: "30px",padding:"0px 10px" }}>
-          <table style={{width:"100%",tableLayout:"fixed"}}>
-              <thead>
-                <tr>
-                  <th
-                    style={{
-                      width: "15%",
-                    }}
-                    align="center"
-                  >
-                    No.
-                  </th>
-                  <th
-                    style={{
-                      width: "60%",
-                    }}
-                    align="center"
-                  >
-                    Category
-                  </th>
-                  <th align="center">Action</th>
-                </tr>
-              </thead>
-              <tbody style={{height:"270px"}}>
-                {/* {categories.length > 0 ? (
-                  categories.map((category, index) => (
-                    <tr key={category.id}>
+        <div className="down-leftCont" style={{ border:"2px solid red",padding:"0px 10px" }}>
+            <table >
+            
+              <tbody >
+                {currentTransaction?.length > 0 ? (
+                  currentTransaction.map((income, index) => (
+                    <tr key={income.id}>
                       <td
                         style={{
-                          width: "15%",
+                          width: "10%",
                         }}
                         align="center"
                       >
@@ -101,28 +95,49 @@ console.log(expense,income);
                       </td>
                       <td
                         style={{
-                          width: "60%",
+                          width: "38%",
+                          paddingLeft:"20px"
+                        }}
+                     
+                      >
+                      <div className="incomename">
+                      <div>{income.title}</div>
+                      <div>{income.accountId.name}</div>
+                      <div> {income.categoryId.name}</div>
+
+                       </div>
+                       
+                      </td>
+                      <td
+                        style={{
+                          width: "20%",
                         }}
                         align="center"
                       >
-                        {category.name}
+                        {JSON.stringify(income.income_date)?.substring(1,11)||JSON.stringify(income.expense_date)?.substring(1,11)}
                       </td>
-                      <td style={{}} align="center">
-                        Edit/Delete
+                      <td
+                        style={{
+                          width: "20%",
+                        }}
+                        align="center"
+                      >
+                        {income.amount}
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
                     <td colSpan={3} align="center">
-                      {error || "No categories found"}
+                      {"No categories found"}
                     </td>
                   </tr>
-                )} */}
+                )}
               </tbody>
             </table>
+          </div>
         </div>
-      </div>
+   
       <div className="rightCont" style={{ border: "2px solid red", width: "40%" }}>
 
 <PieChart

@@ -11,5 +11,6 @@ router.route('/updateprofile/:id').put(formidable(),pages.updateProfile)
 router.route('/getallusers').post(pages.getAllUserController)
 router.route('/photo/:pid').get(pages.getAllUsersPhotoController)
 router.route('/myprofile').get(isAuthenticatedUser,pages.getUserDetailsController)
+router.route('/currenttransaction').get(isAuthenticatedUser,pages.currentTransaction)
 
 module.exports = router

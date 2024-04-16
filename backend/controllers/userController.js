@@ -180,3 +180,28 @@ exports.getAllUsersPhotoController = catchAsyncErrors(async (req, res,next) => {
 //     helper();
 //   }, 300000);
 // });
+const Income = require("../models/incomeModel.js");
+const Expense = require("../models/expensesModel.js");
+
+exports.currentTransaction = catchAsyncErrors(async (req,res) => {
+  const userId = req.user._id
+  const expense = await Expense.find({userId});
+  const income = await Income.find({userId});
+console.log(expense);
+console.log(income);
+  const data = [
+    ...expense,...income
+  ]
+  data.sort((a, b) => {
+    let dateA = a.createdAt 
+    let dateB = b.createdAt 
+
+    return new Date(dateB) - new Date(dateA); 
+});
+
+console.log(data);
+  res.status(200).json({
+    success: true,
+    data
+  });
+})
