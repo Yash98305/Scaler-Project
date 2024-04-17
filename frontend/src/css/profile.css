@@ -57,9 +57,13 @@
 .pro_con {
   min-height: 85vh;
   display: flex;
-  margin-top: 100px;
 }
 .pro_con img {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  margin: 60px 120px;
+  padding: 7px;
   background-color: #663dff;
   background-image: linear-gradient(
     319deg,
@@ -76,10 +80,11 @@
   max-width: 800px;
   background: aliceblue;
   margin-top: 20px;
+  height: 100vh;
   border-radius: 12px;
   margin-left: 60px;
   width: 800px;
-  padding: 25px 40px 10px 40px;
+  padding: 100px 40px 10px 40px;
   /* box-shadow: 0px 0px 10px rgba(0,0,0,0.1); */
 }
 .pro_con .container .text {
@@ -171,6 +176,7 @@
   transform: scale(1);
 }
 .pro_con .container .submit-btn .input-data {
+  overflow: hidden;
   height: 45px !important;
   width: 25% !important;
 }
@@ -235,6 +241,7 @@ padding-top: 20px;
 }
 * {
   font-family: "Open Sans", sans-serif;
+  overflow: hidden;
 }
 * {
   margin: 0;

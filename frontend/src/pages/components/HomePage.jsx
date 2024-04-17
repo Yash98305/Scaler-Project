@@ -41,7 +41,7 @@ const HomePage = () => {
         },
       });
       const getTotalBalance = () => {
-        return data.reduce((acc, account) => acc + Number(account.balance), 0);
+        return res.data.account.reduce((acc, account) => acc + Number(account.balance), 0);
       };   
       console.log(getTotalBalance());
        setBalance(getTotalBalance());
@@ -85,7 +85,7 @@ const HomePage = () => {
   }, [auth]);
 
 console.log(currentTransaction);
-
+const name = JSON.parse(localStorage.getItem("auth")).user.name
   return (
     <div style={{ width: "100%", height: "100%", display: "flex" }}>
       <div className="leftCont" style={{ width: "60%", padding: "5px" }}>
@@ -102,7 +102,7 @@ console.log(currentTransaction);
               padding: "10px 0px",
             }}
           > 
-            <CreditCard balance={balance}/>
+            <CreditCard balance={balance} name={name}/>
           </div>
 
           <div

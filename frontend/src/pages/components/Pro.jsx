@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../css/edit.css";
-import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useAuth } from "../../context/auth.js";
 const Pro = ({setEdit}) => {
   const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -106,7 +108,7 @@ return (
             )}
           </div>
         {/* <div><h1>Your Profile</h1></div> */}
-        <div claseName="container">
+        <div class="container">
           <div class="text">Update Profile</div>
           {/* <div className="btn1_con">
           <button class="Btn1" onClick={EditHandle}>Edit 
