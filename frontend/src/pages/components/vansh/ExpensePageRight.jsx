@@ -97,7 +97,7 @@ const ExpensePageRight = ({open,setOpen}) => {
   return (
     <React.Fragment>
      <Button
-        sx={{ float: "right", margin: "30px 40px", display: "flex" }}
+        style={{ float: "right", margin: "30px 40px", display: "flex",backgroundColor: "#d9d9d9" }}
         variant="contained"
         color="success"
         onClick={handleClickOpen}
@@ -110,7 +110,7 @@ const ExpensePageRight = ({open,setOpen}) => {
             fontSize: "15px",
           }}
         >
-                  <AddCircleOutlineOutlinedIcon sx={{fontSize: "23px",marginRight:"4px"}} />
+                  <AddCircleOutlineOutlinedIcon sx={{fontSize: "23px",marginRight:"4px",}} />
 
          Add Expense 
         </div>

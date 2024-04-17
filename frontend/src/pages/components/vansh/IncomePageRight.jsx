@@ -98,7 +98,7 @@ const IncomePageRight = ({open,setOpen}) => {
   return (
     <React.Fragment>
      <Button
-        sx={{ float: "right", margin: "30px 40px", display: "flex" }}
+        sx={{ float: "right", margin: "30px 40px", display: "flex",backgroundColor: "#d9d9d9" }}
         variant="contained"
         color="success"
         onClick={handleClickOpen}
