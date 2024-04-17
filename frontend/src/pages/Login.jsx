@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "../css/login.css";
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -17,7 +17,7 @@ import { IconButton, OutlinedInput, TextField } from '@mui/material'
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const { auth, setAuth,api } = useAuth();
+  const { auth, setAuth, api } = useAuth();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const Login = () => {
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
         setAuth({
-           ...auth,
+          ...auth,
           user: res.data.user,
           token: res.data.token,
         });
@@ -58,65 +58,60 @@ const Login = () => {
   };
 
   return (
-    <div style={{height:"100vh",width:"100vw",display:"flex",justifyContent:"center",alignItems:"center",background: "#ADA996",
-    background: "-webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",
-    background: "linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",}}>
-    <div style={{padding:"4px 120px",boxShadow: "0 0 20px 5px rgba(128, 128, 128, 0.2)",backgroundColor:"rgb(229 229 229)",borderRadius:"40px"}}><img style={{zIndex:"1"}} src={img} alt="" />
-    <div style={{zIndex:"99",position:"absolute",top:"50px",right:"250px"}}>
-    <form onSubmit={handleSubmit} style={{width:"400px"}}>
-    <h1 style={{textAlign:"center",padding:"40px"}}>Login Yourself</h1>
-    
-    <TextField
-          id="outlined-multiline-flexible"
-          label="Email"
-          value={email}
-          name="email"
-          required
-          onChange={(e) => {
-                  setemail(e.target.value);
-                }}
-          multiline
-       style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
-        />
-  
-    
+    <div style={{
+      height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center", background: "#ADA996",
+      background: "-webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",
+      background: "linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",
+    }}>
+      <div style={{ padding: "4px 120px", boxShadow: "0 0 20px 5px rgba(128, 128, 128, 0.2)", backgroundColor: "rgb(229 229 229)", borderRadius: "40px" }}><img style={{ zIndex: "1" }} src={img} alt="" />
+        <div style={{ zIndex: "99", position: "absolute", top: "50px", right: "250px" }}>
+          <form onSubmit={handleSubmit} style={{ width: "400px" }}>
+            <h1 style={{ textAlign: "center", padding: "40px" }}>Login Yourself</h1>
 
-<FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-          <OutlinedInput
-           value={password}
-                name="password"
-                onChange={(e) => {
-                  setpassword(e.target.value);
-                }}
-          multiline
-       style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
-            id="outlined-adornment-password"
-            type={showPassword ? 'text' : 'password'}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-       
-        <button style={{width:"100%",padding:"17px",backgroundColor:"black",color:"white",fontSize:"15px",borderRadius:"7px"}}>
-Submit
-        </button>
-        <p style={{marginTop:"30px", textAlign:"right",marginRight:"7px"}}>Don't have an account yet? <NavLink to="/register">Sign up</NavLink></p>
+            <TextField
+              id="outlined-multiline-flexible"
+              label="Email"
+              value={email}
+              name="email"
+              required
+              onChange={(e) => {
+                setemail(e.target.value);
+              }}
+              multiline
+              style={{ width: "100%", borderColor: "red", marginBottom: "40px" }}
+            />
 
-    </form>
-    </div>
-    </div>
+
+
+            <FormControl sx={{ m: 1, width: "400px", marginLeft: "-0.1px" }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? 'text' : 'password'}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+
+            <button style={{ width: "100%", padding: "17px", backgroundColor: "black", color: "white", fontSize: "15px", borderRadius: "7px" }}>
+              Submit
+            </button>
+            <p style={{ marginTop: "30px", textAlign: "right", marginRight: "7px" }}>Don't have an account yet? <NavLink to="/register">Sign up</NavLink></p>
+
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

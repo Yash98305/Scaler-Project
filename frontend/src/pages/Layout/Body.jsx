@@ -104,10 +104,10 @@ const Body = ({ obj }) => {
                 </NavLink>
                 <NavLink to="/statistic">
 
-                <li>
+                {/* <li>
                   <InsightsRoundedIcon color="secondary" />
                   <span>Statistics</span>
-                </li>
+                </li> */}
                 </NavLink>
                 <NavLink to="/account">
 
