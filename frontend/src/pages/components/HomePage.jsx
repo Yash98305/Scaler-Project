@@ -112,9 +112,9 @@ const name = JSON.parse(localStorage.getItem("auth")).user.name
               padding: "10px 0px",
             }}
           >
-            <Record amount={1200} icon={<img style={{height:"30px", margin:"6px", marginLeft:"10px",}} src={img}/> 
+            <Record amount={income} icon={<img style={{height:"30px", margin:"6px", marginLeft:"10px",}} src={img}/> 
             } name={"Income"} style={{ marginRight: "6" }} />
-            <Record amount={1200} icon={<img style={{height:"30px", margin:"6px", marginLeft:"10px", }} src={img2}/>
+            <Record amount={expense} icon={<img style={{height:"30px", margin:"6px", marginLeft:"10px", }} src={img2}/>
             } name={"Expense"}/>
           </div>
         </div>
@@ -123,7 +123,7 @@ const name = JSON.parse(localStorage.getItem("auth")).user.name
         <div
           className="down-leftCont"
           style={{
-            border: "2px solid red",
+           
             padding: "0px 10px",
             height: "50vh",
           }}
@@ -139,7 +139,7 @@ const name = JSON.parse(localStorage.getItem("auth")).user.name
                 currentTransaction.map((income, index) => (
                   <tr key={income.id} style={{
 
-                    border: "2px solid red",
+                  
                   }}>
                     <td
                       style={{
@@ -194,9 +194,8 @@ const name = JSON.parse(localStorage.getItem("auth")).user.name
 
       <div
         className="rightCont"
-        style={{ width: "35%", backgroundColor: "#EEEDEB", height: "93%", margin: "15px", borderRadius: "50px", marginLeft: "30px", marginTop: "22px" }}
+        style={{ width: "35%", backgroundColor: "#EEEDEB", height: "93%", margin: "15px", marginLeft: "30px", marginTop: "22px" }}
       >
-        {/* <LineChart/> */}
       </div>
     </div>
   );

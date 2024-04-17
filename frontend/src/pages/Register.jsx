@@ -45,7 +45,7 @@ const {api} = useAuth();
     <div style={{height:"100vh",width:"100vw",display:"flex",justifyContent:"center",alignItems:"center",background: "#ADA996",
     background: "-webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",
     background: "linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",}}>
-    <div style={{padding:"4px 120px",boxShadow:"47px 12px 2px gray",backgroundColor:"rgb(229 229 229)",borderRadius:"40px"}}><img style={{zIndex:"1"}} src={img} alt="" />
+    <div style={{padding:"4px 120px",boxShadow: "0 0 20px 5px rgba(128, 128, 128, 0.2)",backgroundColor:"rgb(229 229 229)",borderRadius:"40px"}}><img style={{zIndex:"1"}} src={img} alt="" />
     <div style={{zIndex:"99",position:"absolute",top:"50px",right:"250px"}}>
     <form onSubmit={handleSubmit} style={{width:"400px"}}>
     <h1 style={{textAlign:"center",padding:"40px"}}>Register Yourself</h1>

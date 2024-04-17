@@ -62,11 +62,19 @@ const AccountLeft = () => {
                   </th>
                   <th
                     style={{
-                      width: "60%",
+                      width: "40%",
                     }}
                     align="center"
                   >
-                    Category
+                    Bank
+                  </th>
+                  <th
+                    style={{
+                      width: "20%",
+                    }}
+                    align="center"
+                  >
+                    Balance
                   </th>
                   <th align="center">Status</th>
                 </tr>
@@ -85,11 +93,19 @@ const AccountLeft = () => {
                       </td>
                       <td
                         style={{
-                          width: "60%",
+                          width: "40%",
                         }}
                         align="center"
                       >
                         {account.name}
+                      </td>
+                      <td
+                        style={{
+                          width: "20%",
+                        }}
+                        align="center"
+                      >
+                        {account.balance}
                       </td>
                       <td  align="center">
                        {account.status}
