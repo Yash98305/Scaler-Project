@@ -1,13 +1,19 @@
 import React, { useState} from "react";
 import "../css/login.css";
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../context/auth.js";
 
 import img from "./Layout/Untitled-1 copy.png"
-import { TextField } from '@mui/material'
-<<<<<<< HEAD
+import { IconButton, OutlinedInput, TextField } from '@mui/material'
+
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -43,24 +49,6 @@ const Login = () => {
     }
   };
 
-
-
-=======
-import { NavLink } from 'react-router-dom'
-
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
-const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -69,7 +57,6 @@ const Login = () => {
     event.preventDefault();
   };
 
->>>>>>> 92dd60f802762245304665916e2fa8c48239a96c
   return (
     <div style={{height:"100vh",width:"100vw",display:"flex",justifyContent:"center",alignItems:"center",background: "#ADA996",
     background: "-webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",
@@ -92,23 +79,18 @@ const Login = () => {
        style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
         />
   
-<<<<<<< HEAD
-    <TextField
-          id="outlined-multiline-flexible"
-          label="Password"
-          required
-          value={password}
+    
+
+<FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+           value={password}
                 name="password"
                 onChange={(e) => {
                   setpassword(e.target.value);
                 }}
           multiline
        style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
-        />
-        <button type="submit" style={{width:"100%",padding:"17px",backgroundColor:"black",color:"white",fontSize:"15px",borderRadius:"7px"}}>
-=======
-  <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-          <OutlinedInput style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
             id="outlined-adornment-password"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
@@ -125,10 +107,10 @@ const Login = () => {
             }
             label="Password"
           />
+        </FormControl>
        
         <button style={{width:"100%",padding:"17px",backgroundColor:"black",color:"white",fontSize:"15px",borderRadius:"7px"}}>
->>>>>>> 92dd60f802762245304665916e2fa8c48239a96c
-            SUBMIT
+Submit
         </button>
         <p style={{marginTop:"30px", textAlign:"right",marginRight:"7px"}}>Don't have an account yet? <NavLink to="/register">Sign up</NavLink></p>
 
