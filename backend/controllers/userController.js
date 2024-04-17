@@ -25,7 +25,7 @@ exports.userLoginController = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.userRegisterController = catchAsyncErrors(async (req, res, next) => { 
-  const {name,phone, email, password } = req.body;
+  const {name,phone, email, password,avatar } = req.body;
   if (!name|| !phone || !email || !password) {
     return next(new ErrorHandler("Please Enter Required Field", 400));
   }
@@ -34,7 +34,7 @@ exports.userRegisterController = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Email Exist", 401));
   }
     const user = new User({
-      name,phone, email, password
+      name,phone, email, password,avatar
     });
    const t= await user.save();
    const userId = t._id

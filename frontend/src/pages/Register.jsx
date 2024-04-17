@@ -1,41 +1,103 @@
-import React from 'react'
 import img from "./Layout/Untitled-1 copy.png"
 import { TextField } from '@mui/material'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../context/auth";
+
 const Register = () => {
+  const navigate = useNavigate();
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [phone, setphone] = useState("");
+  const [password, setpassword] = useState("");
+const {api} = useAuth();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await axios.post(
+        `${api}/user/register`,
+        {
+          name,
+          email,
+          phone,
+          password,
+          avatar : photoapi
+        }
+      );
+      if (res && res.data.success) {
+        toast.success(res.data && res.data.message);
+        navigate("/login");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
+  const photoapi = `https://api.multiavatar.com/4645646/${Math.round(Math.random() * 1000)}.png`;
+
   return (
     <div style={{height:"100vh",width:"100vw",display:"flex",justifyContent:"center",alignItems:"center",background: "#ADA996",
     background: "-webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",
     background: "linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",}}>
     <div style={{padding:"4px 120px",boxShadow:"47px 12px 2px gray",backgroundColor:"rgb(229 229 229)",borderRadius:"40px"}}><img style={{zIndex:"1"}} src={img} alt="" />
     <div style={{zIndex:"99",position:"absolute",top:"50px",right:"250px"}}>
-    <form action="" style={{width:"400px"}}>
+    <form onSubmit={handleSubmit} style={{width:"400px"}}>
     <h1 style={{textAlign:"center",padding:"40px"}}>Register Yourself</h1>
     <TextField
           id="outlined-multiline-flexible"
           label="Name"
+          value={name}
+                name="name"
+                required
+                onChange={(e) => {
+                  setname(e.target.value);
+                }}
           multiline
        style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
         />
     <TextField
           id="outlined-multiline-flexible"
           label="Email"
+          value={email}
+                name="email"
+                required
+                onChange={(e) => {
+                  setemail(e.target.value);
+                }}
           multiline
        style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
         />
     <TextField
           id="outlined-multiline-flexible"
           label="Phone"
+          value={phone}
+                required
+                name="phone"
+                onChange={(e) => {
+                  setphone(e.target.value);
+                }}
           multiline
        style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
         />
     <TextField
           id="outlined-multiline-flexible"
           label="Password"
+          value={password}
+                name="password"
+                required
+                onChange={(e) => {
+                  setpassword(e.target.value);
+                }}
           multiline
        style={{ width:"100%",borderColor:"red",marginBottom:"40px"}} 
         />
-        <button style={{width:"100%",padding:"17px",backgroundColor:"black",color:"white",fontSize:"15px",borderRadius:"7px"}}>
+        <button type="submit" style={{width:"100%",padding:"17px",backgroundColor:"black",color:"white",fontSize:"15px",borderRadius:"7px"}}>
             SUBMIT
         </button>
     </form>
