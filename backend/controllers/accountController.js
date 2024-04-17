@@ -54,6 +54,7 @@ exports.getController = catchAsyncError(async(req,res,next)=>{
     const userId = req.user._id
     console.log(1);
     const account = await Account.find({userId})
+    console.log(account);
     res.status(200).send({
         success: true,
         message: "Account fetched successfully",

@@ -17,6 +17,8 @@ const HomePage = () => {
   const { api, auth } = useAuth();
   const [income, setIncome] = useState();
   const [expense, setExpense] = useState();
+  const [balance,setBalance] = useState();
+  const [data,setData]=useState();
   const [currentTransaction, setCurrentTransaction] = useState();
   const token = JSON.parse(localStorage.getItem("auth")).token;
   const getIncome = async () => {
@@ -29,6 +31,24 @@ const HomePage = () => {
       setIncome(res.data.totalIncome);
     } catch (e) {
       console.log(e);
+    }
+  };
+  const getAccountData = async () => {
+    try {
+      const res = await axios.get(`${api}/account/get`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      const getTotalBalance = () => {
+        return data.reduce((acc, account) => acc + Number(account.balance), 0);
+      };   
+      console.log(getTotalBalance());
+       setBalance(getTotalBalance());
+      setData(res.data.account);
+    } catch (err) {
+      console.error("Failed to fetch categories:", err);
+      // setError("Failed to load categories");
     }
   };
   const getcurrentTransaction = async () => {
@@ -60,10 +80,11 @@ const HomePage = () => {
   useEffect(() => {
     getExpense();
     getIncome();
+    getAccountData()
     getcurrentTransaction();
   }, [auth]);
 
-  console.log(expense, income);
+console.log(currentTransaction);
 
   return (
     <div style={{ width: "100%", height: "100%", display: "flex" }}>
@@ -81,7 +102,7 @@ const HomePage = () => {
               padding: "10px 0px",
             }}
           > 
-            <CreditCard />
+            <CreditCard balance={balance}/>
           </div>
 
           <div

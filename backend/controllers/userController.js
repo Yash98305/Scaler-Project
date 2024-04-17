@@ -236,7 +236,6 @@ exports.currentTransaction = catchAsyncErrors(async (req,res) => {
     return new Date(dateB) - new Date(dateA); 
 });
 
-console.log(data);
   res.status(200).json({
     success: true,
     data
