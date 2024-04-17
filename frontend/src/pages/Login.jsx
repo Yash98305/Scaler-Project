@@ -86,6 +86,12 @@ const Login = () => {
             <FormControl sx={{ m: 1, width: "400px", marginLeft: "-0.1px" }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
               <OutlinedInput
+              value={password}
+              name="password"
+              required
+              onChange={(e) => {
+                setpassword(e.target.value);
+              }}
                 id="outlined-adornment-password"
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
