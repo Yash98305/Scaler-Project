@@ -50,7 +50,7 @@ const ExportData = () => {
    
   return (
     <Button
-    sx={{ float: "right", margin: "30px 40px", display: "flex" }}
+    style={{ float: "right", margin: "30px 40px", display: "flex",backgroundColor: "#d9d9d9",color:"#2e335b" }}
     variant="contained"
     color="success"
     onClick={exportToExcel}

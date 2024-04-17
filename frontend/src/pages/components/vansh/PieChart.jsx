@@ -9,7 +9,7 @@ class PieChart extends Component {
 		const options = {
 			animationEnabled: true,
 			title: {
-				text: "Customer Satisfaction"
+				text: "Categories"
 			},
 			subtitles: [{
 				text: "71% Positive",
@@ -32,7 +32,7 @@ class PieChart extends Component {
 			}]
 		}
 		return (
-		<div>
+		<div style={{ marginTop: '100px', height:"100px",width:"250px",marginLeft:"100px" }}>
 			<CanvasJSChart options = {options}
 				/* onRef={ref => this.chart = ref} */
 			/>
