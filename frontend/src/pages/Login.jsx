@@ -30,7 +30,6 @@ const Login = () => {
         },
       );
       if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
         setAuth({
           ...auth,
           user: res.data.user,
@@ -39,7 +38,6 @@ const Login = () => {
         toast.success("Login in successfully");
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/home")
-        // navigate(location.state || "/chat");
       } else {
         toast.error(res.data.message);
       }

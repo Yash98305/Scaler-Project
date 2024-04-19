@@ -1,22 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
 import "../../css/home.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../../context/auth";
-import Profile from "../Profile";
-import Home from "../Home";
-import Expenses from "../Expenses";
-import Category from "../Category";
-import Income from "../Income";
-import Budget from "../Budget";
-import Statistic from "../Statistic";
 import Avatar from "@mui/material/Avatar";
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
 import Search from "./Search";
-import { useAnimate } from "framer-motion";
 import {motion} from "framer-motion"
 import VerticalNav from "./VerticalNav";
-import Animate from "../../Animate";
 import AnimateBody from "../../AnimateBody";
 const Body = ({ obj }) => {
   const { auth, setAuth,mot,setmot,so } = useAuth();
@@ -39,6 +29,7 @@ const Body = ({ obj }) => {
   return (
     <>
       <div className="home_con">
+
         <div>
           <div className="horizontal_nav">
             <div style={{ fontWeight: "bolder", fontSize: "30px" }}>
@@ -78,6 +69,7 @@ const Body = ({ obj }) => {
               
             </div>
           </div>
+          <ToastContainer/>
         </div>
       </div>
     </>

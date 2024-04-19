@@ -1,9 +1,12 @@
 
   import React from 'react'
   import {motion} from "framer-motion" 
+import { useAuth } from './context/auth'
   const Animate = ({app}) => {
+    const {o} = useAuth()
     return (
-        <motion.div
+<>
+      {o?  <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ twice: true }}
@@ -15,7 +18,9 @@
         }}
       >
         {app}
-      </motion.div>
+      </motion.div>: <div>{app}</div>}
+
+      </>
     )
   }
   

@@ -1,8 +1,11 @@
 import React from 'react'
+import { ToastContainer } from 'react-toastify'
 
 const ErrorPage = () => {
   return (
-    <div>Error+!!</div>
+    <div>Error+!!
+         <ToastContainer/>
+    </div>
   )
 }
 

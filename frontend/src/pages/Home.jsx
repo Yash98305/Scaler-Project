@@ -3,14 +3,16 @@ import Body from "./Layout/Body.jsx";
 import HomePage from "./components/HomePage.jsx"
 import Animate from "../Animate.jsx";
 import { useAuth } from "../context/auth.js";
+import ErrorPage from "./ErrorPage.jsx";
 const Home = () => {
-const {o} = useAuth();
+const {auth} = useAuth();
+useEffect(()=>{
 
+},[auth])
   
   return (
-    <>{o?<Animate app={<Body obj={<HomePage/>}/>}/>
-:<Body obj={<HomePage/>}/>
-    }
+    <><Animate app={<Body obj={<HomePage/>}/>}/>
+
       
     </>
     
