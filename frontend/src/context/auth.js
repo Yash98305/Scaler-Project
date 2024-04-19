@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
   const [activeUsers, setActiveUsers] = useState([]);
   const [newMessageFlag, setNewMessageFlag] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-
+  const[o,so]=useState(true)
   //default axios
   axios.defaults.headers.common["Authorization"] = auth?.token;
 
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
         activeUsers,
         setActiveUsers,
         newMessageFlag,
-        setNewMessageFlag,showEmojiPicker,setShowEmojiPicker,mot,setmot
+        setNewMessageFlag,showEmojiPicker,setShowEmojiPicker,mot,setmot,o,so
       }}
     >
       {children}

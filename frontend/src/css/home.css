@@ -52,6 +52,7 @@ a span{
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px 0px 20px;
+  z-index: 999;
 }
 .horizontal_nav_1 {
   display: flex;
@@ -84,6 +85,7 @@ a span{
   height: 92vh;
   display: flex;
   align-items: center;
+  z-index: 0;
   justify-content: center;
   background-color: #EEEDEB;
 }

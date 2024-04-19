@@ -17,8 +17,8 @@ import Animate from "./Animate.jsx";
 
 const App = () => {
   return (
-    <>
-    <Animate app={ <Routes>
+<>
+    <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
@@ -35,9 +35,7 @@ const App = () => {
       </Routes>
    
     
-    }
-    /></>
-   
+    </>
   );
 };
 

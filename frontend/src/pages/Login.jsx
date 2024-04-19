@@ -74,10 +74,10 @@ const Login = () => {
               value={email}
               name="email"
               required
+              autoFocus
               onChange={(e) => {
                 setemail(e.target.value);
               }}
-              multiline
               style={{ width: "100%", borderColor: "red", marginBottom: "40px" }}
             />
 

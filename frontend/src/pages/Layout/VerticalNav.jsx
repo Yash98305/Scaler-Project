@@ -9,11 +9,13 @@ import InsightsRoundedIcon from "@mui/icons-material/InsightsRounded";
 import InventoryRoundedIcon from "@mui/icons-material/InventoryRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import AccountBalanceWalletRoundedIcon from "@mui/icons-material/AccountBalanceWalletRounded";
+import { useAnimationFrame } from 'framer-motion';
+import { useAuth } from '../../context/auth';
 
 const VerticalNav = ({handleLogout}) => {
-    
-  return (
-    <><ul>
+    const {so} = useAuth()
+   return (
+    <><ul onClick={()=>so?.(false)}>
     <NavLink to="/home" >
       <li>
         <HomeRoundedIcon color="secondary" />

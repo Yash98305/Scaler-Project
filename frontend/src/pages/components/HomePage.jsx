@@ -190,7 +190,8 @@ const HomePage = () => {
                             <motion.img
                               initial={{ y: 20, opacity: 0.01 }}
                               animate={{ y: -1, opacity: 1 }}
-                              transition={{ ease: "easeOut", duration: 2 }}
+                              transition={{ ease: "backOut", duration: 2 }}
+                              end = {{ y: 20, opacity: 0.01 }}
                               style={{ width: "40px", height: "40px" }}
                               src={increaseicon}
                               alt="icon"

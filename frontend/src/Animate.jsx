@@ -6,12 +6,12 @@
         <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ twice: true }}
         transition={{ease:"easeOut", duration: 1 }}
      
         variants={{
           visible: {x:0, opacity: 1, scale: 1 },
-          hidden: {x:-100, opacity: 0, scale: 1 }
+          hidden: {x:-100, opacity: 0, scale: 0.95 }
         }}
       >
         {app}

@@ -19,7 +19,7 @@ import VerticalNav from "./VerticalNav";
 import Animate from "../../Animate";
 import AnimateBody from "../../AnimateBody";
 const Body = ({ obj }) => {
-  const { auth, setAuth,mot,setmot } = useAuth();
+  const { auth, setAuth,mot,setmot,so } = useAuth();
   console.log(auth);
   const objectreturn = (obj) => {
     return obj;
@@ -32,6 +32,7 @@ const Body = ({ obj }) => {
     });
     localStorage.removeItem("auth");
     toast.success("Logout Successfully");
+    so(true);
   };
   const userId = JSON.parse(localStorage.getItem("auth")).user._id;
 
@@ -59,9 +60,9 @@ const Body = ({ obj }) => {
             </div>
           </div>
           <div className="home_content">
-         {mot?<motion.div className="vertical_nav"  initial={{ x: -50, opacity: 0.01 }}
-                              animate={{ x: 0, opacity: 1 }} onClick={()=>setmot(false)}
-                              transition={{ ease: "easeInOut", duration: 1}}>
+         {mot?<motion.div className="vertical_nav"  initial={{ x: -40, opacity: 0.01,scale:0.95 }}
+                              animate={{ x: 0, opacity: 1,scale:1}} onClick={()=>setmot(false)}
+                              transition={{ ease: "backInOut", duration: 1.8}}>
               <VerticalNav setmot={setmot} handleLogout={handleLogout}/>
             </motion.div>: <motion.div className="vertical_nav"
             initial={{ x: 0,opacity:1 }}>
