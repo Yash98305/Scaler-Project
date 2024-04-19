@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../css/edit.css";
+// import "../../css/edit.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";

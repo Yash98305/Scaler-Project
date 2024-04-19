@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "../../css/home.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,21 +11,15 @@ import Income from "../Income";
 import Budget from "../Budget";
 import Statistic from "../Statistic";
 import Avatar from "@mui/material/Avatar";
-import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
-import PaidRoundedIcon from "@mui/icons-material/PaidRounded";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import CategoryRoundedIcon from "@mui/icons-material/CategoryRounded";
-import ArchiveRoundedIcon from "@mui/icons-material/ArchiveRounded";
-import InsightsRoundedIcon from "@mui/icons-material/InsightsRounded";
-import InventoryRoundedIcon from "@mui/icons-material/InventoryRounded";
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
-import AccountBalanceWalletRoundedIcon from "@mui/icons-material/AccountBalanceWalletRounded";
 import Search from "./Search";
+import { useAnimate } from "framer-motion";
+import {motion} from "framer-motion"
+import VerticalNav from "./VerticalNav";
+import Animate from "../../Animate";
+import AnimateBody from "../../AnimateBody";
 const Body = ({ obj }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { auth, setAuth } = useAuth();
+  const { auth, setAuth,mot,setmot } = useAuth();
   console.log(auth);
   const objectreturn = (obj) => {
     return obj;
@@ -43,7 +37,6 @@ const Body = ({ obj }) => {
 
   return (
     <>
-      {" "}
       <div className="home_con">
         <div>
           <div className="horizontal_nav">
@@ -66,75 +59,22 @@ const Body = ({ obj }) => {
             </div>
           </div>
           <div className="home_content">
-            <div className="vertical_nav">
-              <ul>
-                <NavLink to="/home">
-                  <li>
-                    <HomeRoundedIcon color="secondary" />
-                    <span style={{ paddingLeft: "10px" }}>Overview</span>
-                  </li>
-                </NavLink>
-                <NavLink to="/category">
-                <li>
-                  <InventoryRoundedIcon color="secondary" />
-                  <span style={{ paddingLeft: "10px"}}>Categories</span>
-                  
-                </li>
-                  </NavLink>
-                  <NavLink to="/expenses">
-
-                <li>
-                  <ArchiveRoundedIcon color="secondary" />
-                  <span>Expenses</span>
-                </li>
-                </NavLink>
-                <NavLink to="/income">
-
-                <li>
-                  <AccountBalanceWalletRoundedIcon color="secondary" />
-                  <span>Income</span>
-                </li>
-                </NavLink>
-                <NavLink to="/budget">
-
-                <li>
-                  <PaidRoundedIcon color="secondary" />
-                  <span>Budget</span>
-                </li>
-                </NavLink>
-                <NavLink to="/statistic">
-
-                {/* <li>
-                  <InsightsRoundedIcon color="secondary" />
-                  <span>Statistics</span>
-                </li> */}
-                </NavLink>
-                <NavLink to="/account">
-
-                <li>
-                  <InsightsRoundedIcon color="secondary" />
-                  <span>Account</span>
-                </li>
-                </NavLink>
-              </ul>
-              <ul>
-              <NavLink to="/profile">
-                <li style={{width:"150px"}}>
-                  <AccountBoxRoundedIcon color="secondary" />
-                  <span>Profile</span>
-                  
-                </li>
-                </NavLink>
-                  <NavLink to="/login" onClick={handleLogout}>
-                <li>
-                  <LogoutRoundedIcon color="secondary" />
-                  <span>Log Out</span> 
-                </li>
-                  </NavLink>
-              </ul>
+         {mot?<motion.div className="vertical_nav"  initial={{ x: -50, opacity: 0.01 }}
+                              animate={{ x: 0, opacity: 1 }} onClick={()=>setmot(false)}
+                              transition={{ ease: "easeInOut", duration: 1}}>
+              <VerticalNav setmot={setmot} handleLogout={handleLogout}/>
+            </motion.div>: <motion.div className="vertical_nav"
+            initial={{ x: 0,opacity:1 }}>
+            
+              <VerticalNav handleLogout={handleLogout}/>
+            </motion.div>}
+            
+           
+            <div className="page" style={{zIndex:999}}>
+            <div>
+            <AnimateBody app={objectreturn(obj)}/>
             </div>
-            <div className="page">
-              <div>{objectreturn(obj)}</div>
+              
             </div>
           </div>
         </div>

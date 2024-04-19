@@ -24,6 +24,7 @@
     "dayjs": "^1.11.10",
     "emoji-picker-react": "^4.5.16",
     "file-saver": "^2.0.5",
+    "framer-motion": "^11.1.5",
     "jsesc": "^3.0.2",
     "react": "^18.2.0",
     "react-credit-card-payment": "^0.1.3",

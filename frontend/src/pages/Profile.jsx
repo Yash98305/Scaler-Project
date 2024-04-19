@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/profile.css";
+// import "../css/profile.css";
 import ProfileDetail from "./components/ProfileDetail";
 import axios from "axios";
 import { useAuth } from "../context/auth";

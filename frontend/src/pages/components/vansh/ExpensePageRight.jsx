@@ -10,6 +10,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import {motion, useAnimate} from "framer-motion"
 import axios from "axios";
 import { useAuth } from "../../../context/auth";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -18,6 +19,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { useEffect } from "react";
 
 const ExpensePageRight = ({open,setOpen}) => {
   const [title, setTitle] = React.useState("");
@@ -94,9 +96,11 @@ const ExpensePageRight = ({open,setOpen}) => {
 
     handleClose();
   };
+
   return (
     <React.Fragment>
      <Button
+    
         style={{ float: "right", margin: "30px 40px", display: "flex",backgroundColor: "#d9d9d9" }}
         variant="contained"
         color="success"

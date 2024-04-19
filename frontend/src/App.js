@@ -13,12 +13,12 @@ import Income from "./pages/Income.jsx";
 import Budget from "./pages/Budget.jsx";
 import Statistic from "./pages/Statistic.jsx";
 import Account from "./pages/Account.jsx";
+import Animate from "./Animate.jsx";
+
 const App = () => {
   return (
     <>
-
-   {/* <Header/> */}
-    <Routes>
+    <Animate app={ <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
@@ -35,7 +35,9 @@ const App = () => {
       </Routes>
    
     
-    </>
+    }
+    /></>
+   
   );
 };
 

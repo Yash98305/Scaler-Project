@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
     user: null,
     token: "",
   });
+  const [mot,setmot] = useState(true)
   const [person, setPerson] = useState({});
   const [activeUsers, setActiveUsers] = useState([]);
   const [newMessageFlag, setNewMessageFlag] = useState(false);
@@ -44,7 +45,7 @@ const AuthProvider = ({ children }) => {
         activeUsers,
         setActiveUsers,
         newMessageFlag,
-        setNewMessageFlag,showEmojiPicker,setShowEmojiPicker
+        setNewMessageFlag,showEmojiPicker,setShowEmojiPicker,mot,setmot
       }}
     >
       {children}
