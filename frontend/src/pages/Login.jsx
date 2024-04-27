@@ -29,13 +29,13 @@ const Login = () => {
           password,
         },
       );
-      if (res && res.data.success) {
+      if (res) {
         setAuth({
           ...auth,
           user: res.data.user,
           token: res.data.token,
         });
-        toast.success("Login in successfully");
+        toast.success("Login successfully");
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/home")
       } else {
