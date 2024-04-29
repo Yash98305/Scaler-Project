@@ -39,7 +39,6 @@ exports.userRegisterController = catchAsyncErrors(async (req, res, next) => {
    const t= await user.save();
    const userId = t._id
    const e = await Account.findOne({userId});
-   console.log(e);
    if(e){
        return next(new ErrorHandler("Account is already associated",200))
    }
@@ -121,7 +120,6 @@ const user = await User.findByIdAndUpdate(
 );
 
 if (photo) {
-  console.log(photo)
   user.photo.data = fs.readFileSync(photo.path);
   user.photo.contentType = photo.type;
 }

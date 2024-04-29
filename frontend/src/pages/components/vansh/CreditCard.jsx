@@ -4,7 +4,6 @@ import React from 'react'
 import Card from 'react-credit-card-payment'
 
 const CreditCard = ({balance,name}) => {
-  console.log(balance);
   return (
     <>
     <Card 

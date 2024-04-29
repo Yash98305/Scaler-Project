@@ -51,7 +51,7 @@ const CategoryForm = ({setError,error,setCategories,categories}) => {
               <tbody>
                 {categories.length > 0 ? (
                   categories.map((category, index) => (
-                    <tr key={category.id}>
+                    <tr key={category._id}>
                       <td
                         style={{
                           width: "15%",

@@ -1,6 +1,6 @@
 import img from "./Layout/Untitled-1 copy.png"
 import { TextField } from '@mui/material'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -13,7 +13,8 @@ const Register = () => {
   const [email, setemail] = useState("");
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
-const {api} = useAuth();
+const {api,auth} = useAuth();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -38,9 +39,12 @@ const {api} = useAuth();
       toast.error("Something went wrong");
     }
   };
-
   const photoapi = `https://api.multiavatar.com/4645646/${Math.round(Math.random() * 1000)}.png`;
-
+  useEffect(()=>{
+    if(auth){
+      toast.success(`you already logged in`)
+      navigate("/home")}
+      },[navigate,auth])
   return (
     <div style={{height:"100vh",width:"100vw",display:"flex",justifyContent:"center",alignItems:"center",background: "#ADA996",
     background: "-webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",

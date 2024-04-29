@@ -16,17 +16,16 @@ import {
   import Search from "../../Layout/Search";
   
   const BudgetPageLeft = ({open,setOpen}) => {
-    const { api } = useAuth();
+    const { auth,api } = useAuth();
     const [income, SetIncome] = useState([]);
     const [error, setError] = useState("");
-    const token = JSON.parse(localStorage.getItem("auth")).token;
   
     useEffect(() => {
       const fetchCategories = async () => {
         try {
           const res = await axios.get(`${api}/income/get`, {
             headers: {
-              Authorization: token,
+              Authorization: auth?.token,
             },
           });
           console.log(res);
@@ -39,8 +38,7 @@ import {
       };
   
       fetchCategories();
-    }, [api, token,open]);
-    console.log(income);
+    }, [api, auth,open]);
     return (
       <>
         <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Incomes</h2>
@@ -95,9 +93,9 @@ import {
                   </tr>
                 </thead>
                 <tbody>
-                  {income.length > 0 ? (
-                    income.map((income, index) => (
-                      <tr key={income.id}>
+                  {income?.length > 0 ? (
+                    income?.map((income, index) => (
+                      <tr key={income._id}>
                         <td
                           style={{
                             width: "10%",

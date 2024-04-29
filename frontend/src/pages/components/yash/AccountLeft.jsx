@@ -1,28 +1,20 @@
 import * as React from "react";
-import Paper from "@mui/material/Paper";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import axios from "axios";
 import { useAuth } from "../../../context/auth.js";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Hidden } from "@mui/material";
 import "../../../css/home.css";
 const AccountLeft = () => {
-  const { api } = useAuth();
+  const { auth,api } = useAuth();
   const [account, setAccount] = useState([]);
   const [error, setError] = useState("");
-  const token = JSON.parse(localStorage.getItem("auth")).token;
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(`${api}/account/get`, {
           headers: {
-            Authorization: token,
+            Authorization: auth?.token,
           },
         });
         console.log(res.data.account);
@@ -34,7 +26,7 @@ const AccountLeft = () => {
     };
 
     fetchCategories();
-  }, [api, token]); // Depend on api and token for re-fetching when these values change
+  }, [api, auth]); // Depend on api and token for re-fetching when these values change
 
   return (
     <>
@@ -82,7 +74,7 @@ const AccountLeft = () => {
               <tbody>
                 {account.length > 0 ? (
                     account.map((account, index) => (
-                    <tr key={account.id}>
+                    <tr key={account._id}>
                       <td
                         style={{
                           width: "15%",

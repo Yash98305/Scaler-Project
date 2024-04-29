@@ -10,13 +10,12 @@ const ExportData = () => {
 
     const [currentTransaction, setCurrentTransaction] = useState();
 
-    const token = JSON.parse(localStorage.getItem("auth")).token;
   
     const getcurrentTransaction = async () => {
         try {
           const res = await axios.get(`${api}/user/currenttransaction`, {
             headers: {
-              Authorization: token,
+              Authorization: auth?.token,
             },
           });
           console.log(res.data.data);

@@ -4,7 +4,6 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -29,8 +28,7 @@ const IncomePageRight = ({open,setOpen}) => {
   const [data, setData] = React.useState();
   const [error, setError] = React.useState("");
   const [getAccount,setGetAccount] = React.useState()
-  const token = JSON.parse(localStorage.getItem("auth")).token;
-  const { api } = useAuth();
+  const {auth, api } = useAuth();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -44,7 +42,7 @@ const IncomePageRight = ({open,setOpen}) => {
     try {
       const res = await axios.get(`${api}/category/getincomecategory`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       setData(res.data.categories);
@@ -57,7 +55,7 @@ const IncomePageRight = ({open,setOpen}) => {
     try {
       const res = await axios.get(`${api}/account/get`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       setGetAccount(res.data.account);
@@ -66,11 +64,7 @@ const IncomePageRight = ({open,setOpen}) => {
       setError("Failed to load categories");
     }
   };
-  console.log(getAccount);
-  React.useEffect(() => {
-    getAccountData();
-    getCategoryData();
-  }, []);
+ 
   const Submit = async (event) => {
     event.preventDefault();
     const data = {
@@ -84,7 +78,7 @@ const IncomePageRight = ({open,setOpen}) => {
     try {
       const res = await axios.post(`${api}/income/create`, data, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       // setName("");
@@ -92,9 +86,12 @@ const IncomePageRight = ({open,setOpen}) => {
     } catch (e) {
       console.error(e);
     }
-
     handleClose();
   };
+  React.useEffect(() => {
+    getAccountData();
+    getCategoryData();
+  }, [auth]);
   return (
     <React.Fragment>
      <Button
@@ -177,7 +174,7 @@ const IncomePageRight = ({open,setOpen}) => {
               >
              {getAccount?.length > 0
                   ? getAccount.map((data, index) => (
-                      <MenuItem value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                      <MenuItem key={data._id} value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
                     ))
                   : error || "No categories found"}
 
@@ -205,7 +202,7 @@ const IncomePageRight = ({open,setOpen}) => {
               
                 {data?.length > 0
                   ? data.map((data, index) => (
-                      <MenuItem value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                      <MenuItem key={data._id} value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
                     ))
                   : error || "No categories found"}
               </Select>

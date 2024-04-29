@@ -1,6 +1,5 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-
+import React, { useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
 import PaidRoundedIcon from "@mui/icons-material/PaidRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
@@ -13,17 +12,21 @@ import { useAnimationFrame } from 'framer-motion';
 import { useAuth } from '../../context/auth';
 
 const VerticalNav = ({handleLogout}) => {
+  const location= useLocation();
     const {so} = useAuth()
+    const lpath = location.pathname
+    useEffect(()=>{
+    },[location])
    return (
     <><ul onClick={()=>so?.(false)}>
     <NavLink to="/home" >
-      <li>
+      <li style={{backgroundColor:`${lpath=="/home" ? '#ccc' : ''}` }}>
         <HomeRoundedIcon color="secondary" />
         <span style={{ paddingLeft: "10px" }}>Overview</span>
       </li>
     </NavLink>
     <NavLink to="/category">
-    <li>
+    <li style={{backgroundColor:`${lpath=="/category" ? '#ccc' : ''}` }}>
       <InventoryRoundedIcon color="secondary" />
       <span style={{ paddingLeft: "10px"}}>Categories</span>
       
@@ -31,35 +34,35 @@ const VerticalNav = ({handleLogout}) => {
       </NavLink>
       <NavLink to="/expenses">
 
-    <li>
+    <li style={{backgroundColor:`${lpath=="/expenses" ? '#ccc' : ''}` }}>
       <ArchiveRoundedIcon color="secondary" />
       <span>Expenses</span>
     </li>
     </NavLink>
     <NavLink to="/income">
 
-    <li>
+    <li style={{backgroundColor:`${lpath=="/income" ? '#ccc' : ''}` }}>
       <AccountBalanceWalletRoundedIcon color="secondary" />
       <span>Income</span>
     </li>
     </NavLink>
     <NavLink to="/budget">
 
-    <li>
+    <li style={{backgroundColor:`${lpath=="/budget" ? '#ccc' : ''}` }}>
       <PaidRoundedIcon color="secondary" />
       <span>Budget</span>
     </li>
     </NavLink>
-    <NavLink to="/statistic">
-
-    {/* <li>
-      <InsightsRoundedIcon color="secondary" />
-      <span>Statistics</span>
-    </li> */}
-    </NavLink>
-    <NavLink to="/account">
+    {/* <NavLink to="/statistic">
 
     <li>
+      <InsightsRoundedIcon color="secondary" />
+      <span>Statistics</span>
+    </li>
+    </NavLink> */}
+    <NavLink to="/account">
+
+    <li style={{backgroundColor:`${lpath=="/account" ? '#ccc' : ''}` }}>
       <InsightsRoundedIcon color="secondary" />
       <span>Account</span>
     </li>
@@ -67,7 +70,7 @@ const VerticalNav = ({handleLogout}) => {
   </ul>
   <ul>
   <NavLink to="/profile">
-    <li style={{width:"150px"}}>
+    <li style={{width:"150px", backgroundColor:`${lpath=="/profile" ? '#ccc' : ''}` }}>
       <AccountBoxRoundedIcon color="secondary" />
       <span>Profile</span>
       

@@ -4,21 +4,13 @@ import React, { useEffect, useState } from "react";
 import Pro from "./Pro.jsx"
 import { useAuth } from "../../context/auth.js";
 const ProfileDetail = () => {
-  const props = JSON.parse(localStorage.getItem("auth")).user
-  const avatar = props.avatar;
   const [edit,setEdit] = useState(false);
   const {auth} = useAuth()
+  const avatar = auth?.avatar;
   const EditHandle = ()=>{
 setEdit(!edit)
   }
-//   useEffect(()=>{
-// const photo = async()=>{
-//   let img = await axios.get(`http://localhost:8000/api/v1/user/photo/${props._id}`)
-// setImg(img.request.responseURL)
-// console.log(img)
-// }
-// photo()
-//   },[auth?.user])
+ 
   return (
     <>
     {edit?<Pro setEdit={setEdit}/>:""}
@@ -28,9 +20,9 @@ setEdit(!edit)
         <div>
           <img
 src={
-              !props.photo
+              !auth?.user?.photo
                 ? avatar
-                : `http://localhost:8000/api/v1/user/photo/${props._id}`
+                : `http://localhost:8000/api/v1/user/photo/${auth?.user?._id}`
             }            alt=""
           />
         </div>
@@ -45,7 +37,7 @@ src={
             <div class="form-row">
               <div className="input-data">
                 <div className="up_con">Your Name</div>
-                <div className="mid_con">{props.name}</div>
+                <div className="mid_con">{auth?.user?.name}</div>
                 <div className="underline_1"></div>
               </div>
 
@@ -53,14 +45,14 @@ src={
             <div class="form-row">
               <div class="input-data">
                 <div className="up_con">Email</div>
-                <div className="mid_con">{props.email}</div>
+                <div className="mid_con">{auth?.user?.email}</div>
                 <div className="underline_1"></div>
               </div>
 
 
               <div class="input-data">
                 <div className="up_con">Contact No.</div>
-                <div className="mid_con">{props.phone}</div>
+                <div className="mid_con">{auth?.user?.phone}</div>
                 <div className="underline_1"></div>
 
               </div>
@@ -69,11 +61,10 @@ src={
               <div class="form-row">
                 <div class="input-data">
                   <div className="up_con">About</div>
-                  <div className="mid_con">{props.about}</div>
+                  <div className="mid_con">{auth?.user?.about}</div>
                   <div className="underline_1"></div>
                 </div>
               </div>
-             
           </form>
         </div>
       </div>

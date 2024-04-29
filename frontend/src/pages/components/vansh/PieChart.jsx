@@ -1,42 +1,41 @@
 import React, { Component } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 
-var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 class PieChart extends Component {
 
 	render() {
+	const categories = 	this.props.categories
+	console.log(categories);
+	
 		const options = {
 			animationEnabled: true,
 			title: {
 				text: "Categories"
 			},
 			subtitles: [{
-				text: "71% Positive",
+				// text: "71% Positive",
 				verticalAlign: "center",
 				fontSize: 24,
 				dockInsidePlotArea: true
 			}],
 			data: [{
 				type: "doughnut",
-				showInLegend: true,
-				indexLabel: "{name}: {y}",
+				showInLegend: false,
+				// indexLabel: "{name} : {y}",
+				indexLabel: "{name}",
 				yValueFormatString: "#,###'%'",
-				dataPoints: [
-					{ name: "Unsatisfied", y: 5 },
-					{ name: "Very Unsatisfied", y: 31 },
-					{ name: "Very Satisfied", y: 40 },
-					{ name: "Satisfied", y: 17 },
-					{ name: "Neutral", y: 7 }
-				]
-			}]
+				dataPoints:
+				categories?.length>0 && categories?.map(e=> {
+					return {name:e.name,y:100,color:e.type=="expense"?"red":"green"}
+				})
+			}],
+
+            
 		}
 		return (
-		<div style={{ marginTop: '100px', height:"100px",width:"250px",marginLeft:"100px" }}>
-			<CanvasJSChart options = {options}
-				/* onRef={ref => this.chart = ref} */
-			/>
-			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+		<div>
+			<CanvasJSChart options = {options}/>
 		</div>
 		);
 	}

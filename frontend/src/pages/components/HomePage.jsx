@@ -22,12 +22,11 @@ const HomePage = () => {
   const [balance, setBalance] = useState();
   const [data, setData] = useState();
   const [currentTransaction, setCurrentTransaction] = useState();
-  const token = JSON.parse(localStorage.getItem("auth")).token;
   const getIncome = async () => {
     try {
       const res = await axios.get(`${api}/income/gettotalincome`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       setIncome(res.data.totalIncome);
@@ -39,7 +38,7 @@ const HomePage = () => {
     try {
       const res = await axios.get(`${api}/account/get`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       const getTotalBalance = () => {
@@ -60,7 +59,7 @@ const HomePage = () => {
     try {
       const res = await axios.get(`${api}/user/currenttransaction`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       console.log(res.data.data);
@@ -74,7 +73,7 @@ const HomePage = () => {
     try {
       const res = await axios.get(`${api}/expense/gettotalexpense`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       setExpense(res.data.totalExpense);
@@ -89,8 +88,6 @@ const HomePage = () => {
     getcurrentTransaction();
   }, [auth]);
 
-  console.log(currentTransaction);
-  const name = JSON.parse(localStorage.getItem("auth")).user.name;
   return (
     <div style={{ width: "100%", height: "100%", display: "flex" }}>
       <div className="leftCont" style={{ width: "60%", padding: "5px" }}>
@@ -107,7 +104,7 @@ const HomePage = () => {
               padding: "10px 0px",
             }}
           >
-            <CreditCard balance={balance} name={name} />
+            <CreditCard balance={balance} name={auth?.user?.name} />
           </div>
 
           <div
@@ -122,7 +119,7 @@ const HomePage = () => {
               icon={
                 <img
                   style={{ height: "30px", margin: "6px", marginLeft: "10px" }}
-                  src={img}
+                  src={img} alt=""
                 />
               }
               name={"Income"}
@@ -133,7 +130,7 @@ const HomePage = () => {
               icon={
                 <img
                   style={{ height: "30px", margin: "6px", marginLeft: "10px" }}
-                  src={img2}
+                  src={img2} alt=""
                 />
               }
               name={"Expense"}
@@ -158,7 +155,7 @@ const HomePage = () => {
             >
               {currentTransaction?.length > 0 ? (
                 currentTransaction.map((income, index) => (
-                  <tr key={income.id} style={{}}>
+                  <tr key={income._id} style={{}}>
                     <td
                       style={{
                         width: "10%",
@@ -191,7 +188,7 @@ const HomePage = () => {
                               initial={{ y: 20, opacity: 0.01 }}
                               animate={{ y: -1, opacity: 1 }}
                               transition={{ ease: "backOut", duration: 2 }}
-                              end = {{ y: 20, opacity: 0.01 }}
+                              end={{ y: 20, opacity: 0.01 }}
                               style={{ width: "40px", height: "40px" }}
                               src={increaseicon}
                               alt="icon"
@@ -243,36 +240,25 @@ const HomePage = () => {
           </table>
         </div>
       </div>
-
-      <div
-        className="rightCont"
-        style={{
-          width: "35%",
-          backgroundColor: "#EEEDEB",
-          height: "93%",
-          margin: "15px",
-          marginLeft: "30px",
-          marginTop: "22px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <PieChart
+      <div style={{ width: "40%", padding: "28px 10px 28px 50px"}}>
+      <div style={{ width: "100%", height: "100%",backgroundColor:"#EEEDEB",borderRadius:"5%"}}>
+        <PieChart 
           series={[
             {
               data: [
-                {
-                  label: "Expense",
+                {id:0,
                   value: Math.floor((Number(expense) / Number(income)) * 100),
+                  label: "Expense",
                 },
-                {
-                  label: "Saving",
+                {id:1,
                   value:
                     100 - Math.floor((Number(expense) / Number(income)) * 100),
+                  label: "Saving",
                 },
               ],
-              innerRadius: 80,
+              highlightScope: { faded: 'global', highlighted: 'item' },
+      faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+              innerRadius: 70,
               outerRadius: 100,
               paddingAngle: 5,
               cornerRadius: 5,
@@ -280,9 +266,12 @@ const HomePage = () => {
               endAngle: 360,
               cx: 150,
               cy: 150,
+              
             },
           ]}
+
         />
+      </div>
       </div>
     </div>
   );

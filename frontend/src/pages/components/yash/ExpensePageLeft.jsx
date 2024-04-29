@@ -7,17 +7,16 @@ import axios from 'axios';
 import Search from '../../Layout/Search';
 
 const ExpensePageLeft = ({open}) => {
-    const { api } = useAuth();
+    const { auth,api } = useAuth();
     const [income, SetIncome] = useState([]);
     const [error, setError] = useState('');
-    const token = JSON.parse(localStorage.getItem("auth")).token;
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
                 const res = await axios.get(`${api}/expense/get`, {
                     headers: {
-                        Authorization: token,
+                        Authorization: auth?.token,
                     }
                 });
                 console.log(res.data);
@@ -29,7 +28,7 @@ const ExpensePageLeft = ({open}) => {
         };
 
         fetchCategories();
-    }, [api, token,open]);
+    }, [api, auth,open]);
   return (
     <>
     <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Expenses</h2>
@@ -91,7 +90,7 @@ Date
               <tbody>
                 {income.length > 0 ? (
                   income.map((income, index) => (
-                    <tr key={income.id}>
+                    <tr key={income._id}>
                       <td
                         style={{
                           width: "10%",

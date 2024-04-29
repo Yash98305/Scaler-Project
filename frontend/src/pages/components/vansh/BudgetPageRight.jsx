@@ -20,6 +20,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import ExportData from "../yash/ExportData";
+import { useEffect } from "react";
 
 const BudgetPageRight = ({open,setOpen}) => {
   const [title, setTitle] = React.useState("");
@@ -30,8 +31,7 @@ const BudgetPageRight = ({open,setOpen}) => {
   const [data, setData] = React.useState();
   const [error, setError] = React.useState("");
   const [getAccount,setGetAccount] = React.useState()
-  const token = JSON.parse(localStorage.getItem("auth")).token;
-  const { api } = useAuth();
+  const {auth, api } = useAuth();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,9 +45,10 @@ const BudgetPageRight = ({open,setOpen}) => {
     try {
       const res = await axios.get(`${api}/category/getincomecategory`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
+
       setData(res.data.categories);
     } catch (err) {
       console.error("Failed to fetch categories:", err);
@@ -58,7 +59,7 @@ const BudgetPageRight = ({open,setOpen}) => {
     try {
       const res = await axios.get(`${api}/account/get`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       setGetAccount(res.data.account);
@@ -67,11 +68,6 @@ const BudgetPageRight = ({open,setOpen}) => {
       setError("Failed to load categories");
     }
   };
-  console.log(getAccount);
-  React.useEffect(() => {
-    getAccountData();
-    getCategoryData();
-  }, []);
   const Submit = async (event) => {
     event.preventDefault();
     const data = {
@@ -81,11 +77,10 @@ const BudgetPageRight = ({open,setOpen}) => {
       categoryId: category,
       income_date: value,
     };
-    console.log(data);
     try {
-      const res = await axios.post(`${api}/income/create`, data, {
+      await axios.post(`${api}/income/create`, data, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       // setName("");
@@ -93,15 +88,19 @@ const BudgetPageRight = ({open,setOpen}) => {
     } catch (e) {
       console.error(e);
     }
-
+    
     handleClose();
   };
-
-   
+  useEffect(() => {
+     getAccountData();
+     getCategoryData();
+   }, [api,auth]);
+  
   return (
-    <React.Fragment>
+    <>
 <ExportData/>
      <Button
+      style={{ float: "right", margin: "30px 40px", display: "flex",backgroundColor: "#d9d9d9",color:"#2e335b" }}
         sx={{ float: "right", margin: "30px 40px", display: "flex" }}
         variant="contained"
         color="success"
@@ -117,7 +116,7 @@ const BudgetPageRight = ({open,setOpen}) => {
         >
                   <AddCircleOutlineOutlinedIcon sx={{fontSize: "23px",marginRight:"4px"}} />
 
-         Add Income 
+        Set Goles
         </div>
       </Button>
       <Dialog
@@ -131,7 +130,7 @@ const BudgetPageRight = ({open,setOpen}) => {
         <DialogTitle
                   sx={{ minWidth: "400px", backgroundColor: "green", color: "white" }}
 
-        >Record Income</DialogTitle>
+        >Set Your Goles</DialogTitle>
         <DialogContent>
           <TextField
           sx={{marginTop:"20px"}}
@@ -181,7 +180,7 @@ const BudgetPageRight = ({open,setOpen}) => {
               >
              {getAccount?.length > 0
                   ? getAccount.map((data, index) => (
-                      <MenuItem value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                      <MenuItem key={data._id} value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
                     ))
                   : error || "No categories found"}
 
@@ -209,7 +208,7 @@ const BudgetPageRight = ({open,setOpen}) => {
               
                 {data?.length > 0
                   ? data.map((data, index) => (
-                      <MenuItem value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                      <MenuItem key={data._id} value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
                     ))
                   : error || "No categories found"}
               </Select>
@@ -239,7 +238,7 @@ const BudgetPageRight = ({open,setOpen}) => {
         color="success" type="submit">Submit</Button>
         </DialogActions>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 };
 

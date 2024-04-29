@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../css/home.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../../context/auth";
 import Avatar from "@mui/material/Avatar";
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
 import Search from "./Search";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 import VerticalNav from "./VerticalNav";
 import AnimateBody from "../../AnimateBody";
+import { useNavigate } from "react-router-dom";
 const Body = ({ obj }) => {
-  const { auth, setAuth,mot,setmot,so } = useAuth();
-  console.log(auth);
+  const navigate = useNavigate();
+  const { auth, setAuth, mot, setmot, so } = useAuth();
   const objectreturn = (obj) => {
     return obj;
   };
@@ -23,13 +24,15 @@ const Body = ({ obj }) => {
     localStorage.removeItem("auth");
     toast.success("Logout Successfully");
     so(true);
+    navigate("/login")
   };
-  const userId = JSON.parse(localStorage.getItem("auth")).user._id;
+  console.log(auth);
+useEffect(()=>{
 
+},[auth])
   return (
     <>
       <div className="home_con">
-
         <div>
           <div className="horizontal_nav">
             <div style={{ fontWeight: "bolder", fontSize: "30px" }}>
@@ -45,31 +48,38 @@ const Body = ({ obj }) => {
               <Avatar
                 style={{ border: "2px solid black", zIndex: "11 !important" }}
                 sx={{ width: 50, height: 50 }}
-                src={`http://localhost:8000/api/v1/user/photo/${userId}`}
+                src={`http://localhost:8000/api/v1/user/photo/${auth?.user?._id}`}
                 alt="error"
               />
             </div>
           </div>
           <div className="home_content">
-         {mot?<motion.div className="vertical_nav"  initial={{ x: -40, opacity: 0.01,scale:0.95 }}
-                              animate={{ x: 0, opacity: 1,scale:1}} onClick={()=>setmot(false)}
-                              transition={{ ease: "backInOut", duration: 1.8}}>
-              <VerticalNav setmot={setmot} handleLogout={handleLogout}/>
-            </motion.div>: <motion.div className="vertical_nav"
-            initial={{ x: 0,opacity:1 }}>
-            
-              <VerticalNav handleLogout={handleLogout}/>
-            </motion.div>}
-            
-           
-            <div className="page" style={{zIndex:999}}>
-            <div>
-            <AnimateBody app={objectreturn(obj)}/>
-            </div>
-              
+            {mot ? (
+              <motion.div
+                className="vertical_nav"
+                initial={{ x: -40, opacity: 0.01, scale: 0.95 }}
+                animate={{ x: 0, opacity: 1, scale: 1 }}
+                onClick={() => setmot(false)}
+                transition={{ ease: "backInOut", duration: 1.8 }}
+              >
+                <VerticalNav setmot={setmot} handleLogout={handleLogout} />
+              </motion.div>
+            ) : (
+              <motion.div
+                className="vertical_nav"
+                initial={{ x: 0, opacity: 1 }}
+              >
+                <VerticalNav handleLogout={handleLogout} />
+              </motion.div>
+            )}
+
+            <div className="page" style={{marginTop:"0px"}}>
+              <div>
+                <AnimateBody app={objectreturn(obj)} />
+              </div>
             </div>
           </div>
-          <ToastContainer/>
+          <ToastContainer />
         </div>
       </div>
     </>

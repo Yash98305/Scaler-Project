@@ -1,8 +1,6 @@
 import React from 'react'
 import '../../../css/record.css'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-// import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
-// import CreditCardIcon from '@material-ui/icons/CreditCard';
 function Record({icon,name,amount}) {
   return (
 

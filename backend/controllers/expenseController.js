@@ -6,7 +6,6 @@ const Account = require("../models/accountsModel.js");
 
 exports.createController = catchAsyncErrors(async(req,res,next)=>{
     const userId = req.user._id
-    console.log(userId);
     const {title,amount,accountId,categoryId,expense_date} = req.body
     const currentAmount = await Account.findById(accountId)
     const t =Number(currentAmount.balance)-Number(amount)
@@ -25,8 +24,6 @@ exports.createController = catchAsyncErrors(async(req,res,next)=>{
 exports.getController = catchAsyncErrors(async(req,res,next)=>{
     const userId = req.user._id
     const expense = await Expense.find({userId}).populate("accountId").populate("categoryId")
-
-    console.log(expense);
     res.status(200).send({
         success: true,
         message: "expense fetched successfully",

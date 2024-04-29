@@ -4,12 +4,16 @@ import HomePage from "./components/HomePage.jsx"
 import Animate from "../Animate.jsx";
 import { useAuth } from "../context/auth.js";
 import ErrorPage from "./ErrorPage.jsx";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const navigate = useNavigate();
 const {auth} = useAuth();
-useEffect(()=>{
 
-},[auth])
-  
+useEffect(() => {
+  if (!auth?.token) {
+    navigate('/login');
+  }
+}, [navigate, auth?.token]);
   return (
     <><Animate app={<Body obj={<HomePage/>}/>}/>
 

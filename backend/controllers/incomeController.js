@@ -23,14 +23,7 @@ exports.createController = catchAsyncErrors(async(req,res,next)=>{
 })
 exports.getController = catchAsyncErrors(async(req,res,next)=>{
     const userId = req.user._id
-    const income = await Income.find({userId}).populate("accountId").populate("categoryId")
-
-    
-    console.log(income);
-    
-    
-    // )
-    // const category = await Category.findById(income.categoryId)
+    const income = await Income.find({userId}).populate("accountId").populate("categoryId")    
     res.status(200).send({
         success: true,
         message: "income fetched successfully",

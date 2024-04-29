@@ -16,10 +16,9 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const CategoryPage = () => {
-  const { api } = useAuth();
+  const { auth,api } = useAuth();
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
-  const token = JSON.parse(localStorage.getItem("auth")).token;
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const CategoryPage = () => {
       try {
         const res = await axios.get(`${api}/category/getcategory`, {
           headers: {
-            Authorization: token,
+            Authorization: auth?.token,
           },
         });
         console.log(res.data.categories);
@@ -39,7 +38,7 @@ const CategoryPage = () => {
     };
 
     fetchCategories();
-  }, [api, token,open]); // Depend on api and token for re-fetching when these values change
+  }, [api, auth,open]); // Depend on api and token for re-fetching when these values change
 
 
 
@@ -52,7 +51,7 @@ const CategoryPage = () => {
        />
       </div>
       <div className='category_page_right'>
-      <CategoryCreate open={open} setOpen={setOpen}/>
+      <CategoryCreate open={open} categories={categories} setOpen={setOpen}/>
 
       </div>
       </div>

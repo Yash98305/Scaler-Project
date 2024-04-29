@@ -10,7 +10,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import {motion, useAnimate} from "framer-motion"
 import axios from "axios";
 import { useAuth } from "../../../context/auth";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -30,8 +29,7 @@ const ExpensePageRight = ({open,setOpen}) => {
   const [data, setData] = React.useState();
   const [error, setError] = React.useState("");
   const [getAccount,setGetAccount] = React.useState()
-  const token = JSON.parse(localStorage.getItem("auth")).token;
-  const { api } = useAuth();
+  const {auth, api } = useAuth();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,7 +43,7 @@ const ExpensePageRight = ({open,setOpen}) => {
     try {
       const res = await axios.get(`${api}/category/getexpensecategory`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       setData(res.data.categories);
@@ -58,7 +56,7 @@ const ExpensePageRight = ({open,setOpen}) => {
     try {
       const res = await axios.get(`${api}/account/get`, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       setGetAccount(res.data.account);
@@ -67,11 +65,6 @@ const ExpensePageRight = ({open,setOpen}) => {
       setError("Failed to load categories");
     }
   };
-  console.log(getAccount);
-  React.useEffect(() => {
-    getAccountData();
-    getCategoryData();
-  }, []);
   const Submit = async (event) => {
     event.preventDefault();
     const data = {
@@ -83,9 +76,9 @@ const ExpensePageRight = ({open,setOpen}) => {
     };
     console.log(data);
     try {
-      const res = await axios.post(`${api}/expense/create`, data, {
+     await axios.post(`${api}/expense/create`, data, {
         headers: {
-          Authorization: token,
+          Authorization: auth?.token,
         },
       });
       // setName("");
@@ -96,6 +89,10 @@ const ExpensePageRight = ({open,setOpen}) => {
 
     handleClose();
   };
+  React.useEffect(() => {
+    getAccountData();
+    getCategoryData();
+  }, [auth]);
 
   return (
     <React.Fragment>
@@ -180,7 +177,7 @@ const ExpensePageRight = ({open,setOpen}) => {
               >
              {getAccount?.length > 0
                   ? getAccount.map((data, index) => (
-                      <MenuItem value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                      <MenuItem key={data._id} value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
                     ))
                   : error || "No categories found"}
 
@@ -208,7 +205,7 @@ const ExpensePageRight = ({open,setOpen}) => {
               
                 {data?.length > 0
                   ? data.map((data, index) => (
-                      <MenuItem value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                      <MenuItem key={data._id} value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
                     ))
                   : error || "No categories found"}
               </Select>
