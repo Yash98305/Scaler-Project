@@ -28,10 +28,9 @@ import {
               Authorization: auth?.token,
             },
           });
-          console.log(res);
-          console.log(res.data.income);
-          SetIncome(res.data.income); // Assuming res.data contains the categories array
-        } catch (err) {
+        
+          SetIncome(res.data.income); 
+                } catch (err) {
           console.error("Failed to fetch categories:", err);
           setError("Failed to load categories");
         }
@@ -41,7 +40,7 @@ import {
     }, [api, auth,open]);
     return (
       <>
-        <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Incomes</h2>
+        <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Budgets</h2>
         <div className="category_form">
           <div
             style={{
@@ -140,8 +139,8 @@ import {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={3} align="center">
-                        {error || "No categories found"}
+                      <td style={{width:"100em",borderRightStyle:"none"}} align="center">
+                        {error || "No Budget Found"}
                       </td>
                     </tr>
                   )}

@@ -12,24 +12,23 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import axios from "axios";
 import { useAuth } from "../../../context/auth";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { useEffect } from "react";
+import { toast } from "react-toastify";
 
-const ExpensePageRight = ({open,setOpen}) => {
+const ExpensePageRight = ({ open, setOpen }) => {
   const [title, setTitle] = React.useState("");
   const [amount, setAmount] = React.useState("");
   const [account, setAccount] = React.useState("");
   const [category, setCategory] = React.useState("");
-  const [value, setValue] = React.useState(dayjs(new Date()));
-  const [data, setData] = React.useState();
+  const [date, setDate] = React.useState(dayjs());
+  const [data, setData] = React.useState([]);
   const [error, setError] = React.useState("");
-  const [getAccount,setGetAccount] = React.useState()
-  const {auth, api } = useAuth();
+  const [getAccount, setGetAccount] = React.useState([]);
+  const { auth, api } = useAuth();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -52,6 +51,7 @@ const ExpensePageRight = ({open,setOpen}) => {
       setError("Failed to load categories");
     }
   };
+
   const getAccountData = async () => {
     try {
       const res = await axios.get(`${api}/account/get`, {
@@ -61,34 +61,40 @@ const ExpensePageRight = ({open,setOpen}) => {
       });
       setGetAccount(res.data.account);
     } catch (err) {
-      console.error("Failed to fetch categories:", err);
-      setError("Failed to load categories");
+      console.error("Failed to fetch accounts:", err);
+      setError("Failed to load accounts");
     }
   };
-  const Submit = async (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = {
+    const expenseData = {
       title,
       accountId: account,
       amount,
       categoryId: category,
-      expense_date: value,
+      expense_date: date,
     };
-    console.log(data);
     try {
-     await axios.post(`${api}/expense/create`, data, {
+      const res = await axios.post(`${api}/expense/create`, expenseData, {
         headers: {
           Authorization: auth?.token,
         },
       });
-      // setName("");
-      // setType("");
+      console.log(res);
+      setTitle("");
+      setAccount("");
+      setAmount("");
+      setCategory("");
+      setDate(dayjs());
+      toast.success("Expense recorded successfully");
     } catch (e) {
-      console.error(e);
+      toast.error(e.response.data.message);
     }
 
     handleClose();
   };
+
   React.useEffect(() => {
     getAccountData();
     getCategoryData();
@@ -96,9 +102,8 @@ const ExpensePageRight = ({open,setOpen}) => {
 
   return (
     <React.Fragment>
-     <Button
-    
-        style={{ float: "right", margin: "30px 40px", display: "flex",backgroundColor: "#d9d9d9" }}
+      <Button
+        style={{ float: "right", margin: "30px 40px", display: "flex", backgroundColor: "#d9d9d9" }}
         variant="contained"
         color="success"
         onClick={handleClickOpen}
@@ -111,9 +116,8 @@ const ExpensePageRight = ({open,setOpen}) => {
             fontSize: "15px",
           }}
         >
-                  <AddCircleOutlineOutlinedIcon sx={{fontSize: "23px",marginRight:"4px",}} />
-
-         Add Expense 
+          <AddCircleOutlineOutlinedIcon sx={{ fontSize: "23px", marginRight: "4px" }} />
+          Add Expense
         </div>
       </Button>
       <Dialog
@@ -121,21 +125,20 @@ const ExpensePageRight = ({open,setOpen}) => {
         onClose={handleClose}
         PaperProps={{
           component: "form",
-          onSubmit: Submit,
+          onSubmit: handleSubmit,
         }}
       >
-        <DialogTitle
-                  sx={{ minWidth: "400px", backgroundColor: "green", color: "white" }}
-
-        >Record Expense</DialogTitle>
+        <DialogTitle sx={{ minWidth: "400px", backgroundColor: "green", color: "white" }}>
+          Record Expense
+        </DialogTitle>
         <DialogContent>
           <TextField
-          sx={{marginTop:"20px"}}
+            sx={{ marginTop: "20px" }}
             autoFocus
             required
             margin="dense"
             id="title"
-            name="tile"
+            name="title"
             label="Title"
             type="text"
             fullWidth
@@ -145,7 +148,6 @@ const ExpensePageRight = ({open,setOpen}) => {
           />
 
           <TextField
-            autoFocus
             required
             sx={{ marginTop: "20px" }}
             margin="dense"
@@ -161,78 +163,67 @@ const ExpensePageRight = ({open,setOpen}) => {
 
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel
-                sx={{ marginTop: "20px" }}
-                id="demo-simple-select-label"
-              >
-                Type
+              <InputLabel sx={{ marginTop: "20px" }} id="account-label">
+                Account
               </InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="account-label"
+                id="account-select"
                 value={account}
                 sx={{ marginTop: "20px" }}
                 label="Account"
                 onChange={(e) => setAccount(e.target.value)}
               >
-             {getAccount?.length > 0
-                  ? getAccount.map((data, index) => (
-                      <MenuItem key={data._id} value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                {getAccount?.length > 0
+                  ? getAccount.map((data) => (
+                      <MenuItem key={data._id} value={data._id}>
+                        {data.name}
+                      </MenuItem>
                     ))
-                  : error || "No categories found"}
-
-                
+                  : error || "No accounts found"}
               </Select>
             </FormControl>
           </Box>
 
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel
-                sx={{ marginTop: "20px" }}
-                id="demo-simple-select-label"
-              >
-                Type
+              <InputLabel sx={{ marginTop: "20px" }} id="category-label">
+                Category
               </InputLabel>
               <Select
-                sx={{ marginTop: "20px" }}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="category-label"
+                id="category-select"
                 value={category}
+                sx={{ marginTop: "20px" }}
                 label="Category"
                 onChange={(e) => setCategory(e.target.value)}
               >
-              
                 {data?.length > 0
-                  ? data.map((data, index) => (
-                      <MenuItem key={data._id} value={data._id} onChange={(e)=>setData()}>{data.name}</MenuItem>
+                  ? data.map((cat) => (
+                      <MenuItem key={cat._id} value={cat._id}>
+                        {cat.name}
+                      </MenuItem>
                     ))
                   : error || "No categories found"}
               </Select>
             </FormControl>
           </Box>
-          <LocalizationProvider
-            dateAdapter={AdapterDayjs}
-            sx={{ width: "100%" }}
-          >
-            <DemoContainer
-              components={["DatePicker"]}
-              sx={{ marginTop: "10px", width: "100%" }}
-            >
-              <DatePicker
-                value={value}
-                sx={{ width: "100%" }}
-                onChange={(newValue) => setValue(newValue)}
-              />
-            </DemoContainer>
+          <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ width: "100%" }}>
+            <DatePicker
+              value={date}
+              sx={{ width: "100%", marginTop: "20px" }}
+              onChange={(newValue) => setDate(newValue)}
+            />
           </LocalizationProvider>
         </DialogContent>
 
         <DialogActions>
-        <Button  variant="contained"
-        color="warning" onClick={handleClose}>Cancel</Button>
-          <Button  variant="contained"
-        color="success" type="submit">Submit</Button>
+          <Button variant="contained" color="warning" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="contained" color="success" type="submit">
+            Submit
+          </Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

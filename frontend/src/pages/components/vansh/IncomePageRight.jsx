@@ -74,7 +74,6 @@ const IncomePageRight = ({open,setOpen}) => {
       categoryId: category,
       income_date: value,
     };
-    console.log(data);
     try {
       const res = await axios.post(`${api}/income/create`, data, {
         headers: {

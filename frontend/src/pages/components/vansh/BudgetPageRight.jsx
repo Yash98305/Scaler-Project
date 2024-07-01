@@ -99,7 +99,7 @@ const BudgetPageRight = ({open,setOpen}) => {
   return (
     <>
 <ExportData/>
-     <Button
+     {/* <Button
       style={{ float: "right", margin: "30px 40px", display: "flex",backgroundColor: "#d9d9d9",color:"#2e335b" }}
         sx={{ float: "right", margin: "30px 40px", display: "flex" }}
         variant="contained"
@@ -237,7 +237,7 @@ const BudgetPageRight = ({open,setOpen}) => {
           <Button  variant="contained"
         color="success" type="submit">Submit</Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 };

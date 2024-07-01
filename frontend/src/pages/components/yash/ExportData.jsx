@@ -12,17 +12,13 @@ const ExportData = () => {
 
   
     const getcurrentTransaction = async () => {
-        try {
+     
           const res = await axios.get(`${api}/user/currenttransaction`, {
             headers: {
               Authorization: auth?.token,
             },
           });
-          console.log(res.data.data);
           setCurrentTransaction(res.data.data);
-        } catch (e) {
-          console.log(e);
-        }
       };
       useEffect(() => {
         getcurrentTransaction();

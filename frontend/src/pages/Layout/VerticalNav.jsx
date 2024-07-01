@@ -21,13 +21,13 @@ const VerticalNav = ({handleLogout}) => {
     <><ul onClick={()=>so?.(false)}>
     <NavLink to="/home" >
       <li style={{backgroundColor:`${lpath=="/home" ? '#ccc' : ''}` }}>
-        <HomeRoundedIcon color="secondary" />
+        <HomeRoundedIcon color="#2E335B" />
         <span style={{ paddingLeft: "10px" }}>Overview</span>
       </li>
     </NavLink>
     <NavLink to="/category">
     <li style={{backgroundColor:`${lpath=="/category" ? '#ccc' : ''}` }}>
-      <InventoryRoundedIcon color="secondary" />
+      <InventoryRoundedIcon color="#2E335B" />
       <span style={{ paddingLeft: "10px"}}>Categories</span>
       
     </li>
@@ -35,21 +35,21 @@ const VerticalNav = ({handleLogout}) => {
       <NavLink to="/expenses">
 
     <li style={{backgroundColor:`${lpath=="/expenses" ? '#ccc' : ''}` }}>
-      <ArchiveRoundedIcon color="secondary" />
+      <ArchiveRoundedIcon color="#2E335B" />
       <span>Expenses</span>
     </li>
     </NavLink>
     <NavLink to="/income">
 
     <li style={{backgroundColor:`${lpath=="/income" ? '#ccc' : ''}` }}>
-      <AccountBalanceWalletRoundedIcon color="secondary" />
+      <AccountBalanceWalletRoundedIcon color="#2E335B" />
       <span>Income</span>
     </li>
     </NavLink>
     <NavLink to="/budget">
 
     <li style={{backgroundColor:`${lpath=="/budget" ? '#ccc' : ''}` }}>
-      <PaidRoundedIcon color="secondary" />
+      <PaidRoundedIcon color="#2E335B" />
       <span>Budget</span>
     </li>
     </NavLink>
@@ -63,7 +63,7 @@ const VerticalNav = ({handleLogout}) => {
     <NavLink to="/account">
 
     <li style={{backgroundColor:`${lpath=="/account" ? '#ccc' : ''}` }}>
-      <InsightsRoundedIcon color="secondary" />
+      <InsightsRoundedIcon color="#2E335B" />
       <span>Account</span>
     </li>
     </NavLink>
@@ -71,14 +71,14 @@ const VerticalNav = ({handleLogout}) => {
   <ul>
   <NavLink to="/profile">
     <li style={{width:"150px", backgroundColor:`${lpath=="/profile" ? '#ccc' : ''}` }}>
-      <AccountBoxRoundedIcon color="secondary" />
+      <AccountBoxRoundedIcon color="#2E335B" />
       <span>Profile</span>
       
     </li>
     </NavLink>
       <NavLink to="/login" onClick={handleLogout}>
     <li>
-      <LogoutRoundedIcon color="secondary" />
+      <LogoutRoundedIcon color="#2E335B" />
       <span>Log Out</span> 
     </li>
       </NavLink>

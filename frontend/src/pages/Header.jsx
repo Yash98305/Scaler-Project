@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/header.css";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/auth.js";
 import img1 from "../icons/ilogo.png"
@@ -57,7 +57,6 @@ const Header = () => {
           )}
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

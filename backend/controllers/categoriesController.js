@@ -54,7 +54,7 @@ exports.updateCategory = catchAsyncError(async(req,res,next)=>{
 
 exports.deleteCategory = catchAsyncError(async(req,res,next)=>{
     const deleteId = req.params.id
-    await Category.findOneAndDelete({deleteId})
+    await Category.findOneAndDelete(deleteId)
     res.status(200).send({
         success: true,
         message: "Category deleted successfully"

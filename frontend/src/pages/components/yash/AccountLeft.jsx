@@ -17,20 +17,18 @@ const AccountLeft = () => {
             Authorization: auth?.token,
           },
         });
-        console.log(res.data.account);
-        setAccount(res.data.account); // Assuming res.data contains the categories array
-      } catch (err) {
+        setAccount(res.data.account); 
+        } catch (err) {
         console.error("Failed to fetch categories:", err);
         setError("Failed to load categories");
       }
     };
 
     fetchCategories();
-  }, [api, auth]); // Depend on api and token for re-fetching when these values change
-
+  }, [api, auth]);
   return (
     <>
-      <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Account</h2>
+      <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Accounts</h2>
       <div className="category_form">
         <div
           style={{
@@ -106,8 +104,8 @@ const AccountLeft = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={3} align="center">
-                      {error || "No categories found"}
+                    <td style={{width:"100em",borderRightStyle:"none"}} align="center">
+                      {error || "No Account Found"}
                     </td>
                   </tr>
                 )}

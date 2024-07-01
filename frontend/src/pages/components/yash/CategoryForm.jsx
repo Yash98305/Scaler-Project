@@ -1,18 +1,32 @@
 import * as React from "react";
-import Paper from "@mui/material/Paper";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import axios from "axios";
-import { useAuth } from "../../../context/auth.js";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Hidden } from "@mui/material";
 import "../../../css/home.css";
-const CategoryForm = ({setError,error,setCategories,categories}) => {
+import axios from "axios";
+import {useAuth} from "../../../context/auth.js"
+import { useEffect } from "react";
+import {Button} from "@mui/material"
+import { toast } from "react-toastify";
 
+const CategoryForm = ({setError,error,setCategories,categories}) => {
+  const {api,auth} = useAuth();
+const [refresh,setRefresh] = React.useState(false)
+const EditCategory = async(id) => {
+try {
+  const res = await axios.put(`${api}/update/delete/${id}`, {
+                    headers: {
+                        Authorization: auth?.token,
+                    }})
+                    if (res){
+                      toast.success("Category Updated successfully")
+                      setRefresh(!refresh)
+                    }
+} catch (error) {
+  console.log(error);
+}
+
+}
+useEffect(()=>{
+
+},[auth,api,refresh])
   return (
     <>
       <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Category</h2>
@@ -69,14 +83,18 @@ const CategoryForm = ({setError,error,setCategories,categories}) => {
                         {category.name}
                       </td>
                       <td style={{}} align="center">
-                        Edit/Delete
+                       
+Edit/
+                        
+Delete
+                     
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={3} align="center">
-                      {error || "No categories found"}
+                    <td style={{width:"100em",borderRightStyle:"none"}} align="center">
+                      {error || "No Categories Found"}
                     </td>
                   </tr>
                 )}

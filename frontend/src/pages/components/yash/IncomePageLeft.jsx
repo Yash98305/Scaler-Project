@@ -1,13 +1,4 @@
-import {
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+
 import React from "react";
 import { useAuth } from "../../../context/auth";
 import { useState } from "react";
@@ -28,8 +19,7 @@ const IncomePageLeft = ({open,setOpen}) => {
             Authorization: auth?.token,
           },
         });
-        console.log(res);
-        console.log(res.data.income);
+       
         SetIncome(res.data.income); // Assuming res.data contains the categories array
       } catch (err) {
         console.error("Failed to fetch categories:", err);
@@ -39,7 +29,6 @@ const IncomePageLeft = ({open,setOpen}) => {
 
     fetchCategories();
   }, [api, auth,open]);
-  console.log(income);
   return (
     <>
       <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Incomes</h2>
@@ -141,8 +130,8 @@ const IncomePageLeft = ({open,setOpen}) => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={3} align="center">
-                      {error || "No categories found"}
+                    <td style={{width:"100em",borderRightStyle:"none"}} align="center">
+                      {error || "No Income Found"}
                     </td>
                   </tr>
                 )}

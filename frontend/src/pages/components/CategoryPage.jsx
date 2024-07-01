@@ -29,7 +29,6 @@ const CategoryPage = () => {
             Authorization: auth?.token,
           },
         });
-        console.log(res.data.categories);
         setCategories(res.data.categories); // Assuming res.data contains the categories array
       } catch (err) {
         console.error("Failed to fetch categories:", err);

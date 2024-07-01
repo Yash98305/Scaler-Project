@@ -4,7 +4,6 @@ import { useAuth } from '../../../context/auth';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import Search from '../../Layout/Search';
 
 const ExpensePageLeft = ({open}) => {
     const { auth,api } = useAuth();
@@ -19,9 +18,8 @@ const ExpensePageLeft = ({open}) => {
                         Authorization: auth?.token,
                     }
                 });
-                console.log(res.data);
-                SetIncome(res.data.expense); // Assuming res.data contains the categories array
-            } catch (err) {
+                SetIncome(res.data.expense); 
+              } catch (err) {
                 console.error('Failed to fetch categories:', err);
                 setError('Failed to load categories');
             }
@@ -136,8 +134,8 @@ Date
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={3} align="center">
-                      {error || "No categories found"}
+                    <td style={{width:"100em",borderRightStyle:"none"}} align="center">
+                      {error || "No Expense Found"}
                     </td>
                   </tr>
                 )}

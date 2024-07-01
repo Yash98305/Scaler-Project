@@ -11,7 +11,7 @@ import AnimateBody from "../../AnimateBody";
 import { useNavigate } from "react-router-dom";
 const Body = ({ obj }) => {
   const navigate = useNavigate();
-  const { auth, setAuth, mot, setmot, so } = useAuth();
+  const { auth, setAuth, mot, setmot, so,api,o} = useAuth();
   const objectreturn = (obj) => {
     return obj;
   };
@@ -26,10 +26,9 @@ const Body = ({ obj }) => {
     so(true);
     navigate("/login")
   };
-  console.log(auth);
 useEffect(()=>{
 
-},[auth])
+},[auth,api,o])
   return (
     <>
       <div className="home_con">
@@ -43,12 +42,12 @@ useEffect(()=>{
             </div>
             <div className="horizontal_nav_1">
               <div style={{ paddingRight: "20px" }}>
-                <NotificationsActiveRoundedIcon color="secondary" />
+                <NotificationsActiveRoundedIcon color="#2E335B" />
               </div>
               <Avatar
                 style={{ border: "2px solid black", zIndex: "11 !important" }}
                 sx={{ width: 50, height: 50 }}
-                src={`http://localhost:8000/api/v1/user/photo/${auth?.user?._id}`}
+                src={`${api}/user/photo/${auth?.user?._id}`}
                 alt="error"
               />
             </div>

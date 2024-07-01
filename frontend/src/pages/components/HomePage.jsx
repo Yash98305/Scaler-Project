@@ -47,12 +47,10 @@ const HomePage = () => {
           0
         );
       };
-      console.log(getTotalBalance());
       setBalance(getTotalBalance());
       setData(res.data.account);
     } catch (err) {
       console.error("Failed to fetch categories:", err);
-      // setError("Failed to load categories");
     }
   };
   const getcurrentTransaction = async () => {
@@ -62,7 +60,6 @@ const HomePage = () => {
           Authorization: auth?.token,
         },
       });
-      console.log(res.data.data);
       setCurrentTransaction(res.data.data);
     } catch (e) {
       console.log(e);
@@ -86,7 +83,7 @@ const HomePage = () => {
     getIncome();
     getAccountData();
     getcurrentTransaction();
-  }, [auth]);
+  }, [auth,api]);
 
   return (
     <div style={{ width: "100%", height: "100%", display: "flex" }}>
@@ -104,7 +101,7 @@ const HomePage = () => {
               padding: "10px 0px",
             }}
           >
-            <CreditCard balance={balance} name={auth?.user?.name} />
+            <CreditCard balance={balance} name={auth?.user?.name}  />
           </div>
 
           <div
@@ -154,7 +151,7 @@ const HomePage = () => {
               }}
             >
               {currentTransaction?.length > 0 ? (
-                currentTransaction.map((income, index) => (
+                currentTransaction?.map((income, index) => (
                   <tr key={income._id} style={{}}>
                     <td
                       style={{
@@ -180,7 +177,6 @@ const HomePage = () => {
                         <div className="incomename">
                           <div>{income.title}</div>
                           <div>{income.accountId.name}</div>
-                          <div> {income.categoryId.name}</div>
                         </div>
                         <div>
                           {income.income_date ? (

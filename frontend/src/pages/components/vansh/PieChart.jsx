@@ -6,7 +6,6 @@ class PieChart extends Component {
 
 	render() {
 	const categories = 	this.props.categories
-	console.log(categories);
 	
 		const options = {
 			animationEnabled: true,

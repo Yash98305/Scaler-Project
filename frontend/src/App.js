@@ -1,19 +1,19 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home" 
-import Login from "./pages/Login" 
-import Register from "./pages/Register" 
+import Login from "./pages/Login.jsx" 
+import Register from "./pages/Register.jsx" 
 // import Header from "./pages/Header";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Forgot from "./pages/Forgot";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile.jsx";
 import Category from "./pages/Category.jsx";
 import Expenses from "./pages/Expenses.jsx";
 import Income from "./pages/Income.jsx";
 import Budget from "./pages/Budget.jsx";
 import Statistic from "./pages/Statistic.jsx";
 import Account from "./pages/Account.jsx";
-import Animate from "./Animate.jsx";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
@@ -33,9 +33,8 @@ const App = () => {
         <Route path="/account" element={<Account/>}/>
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
-   
-    
-    </>
+<ToastContainer/>
+   </>
   );
 };
 

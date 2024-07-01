@@ -1,6 +1,5 @@
 import React from "react";
 import {NavLink} from "react-router-dom"
-import { ToastContainer } from "react-toastify";
 import "../css/error.css";
 const ErrorPage = () => {
   return (
@@ -29,7 +28,6 @@ const ErrorPage = () => {
           </div>
         </div>
       </section>
-      <ToastContainer />
     </>
   );
 };
