@@ -1,7 +1,7 @@
 import * as React from "react";
 import "../../../css/home.css";
 import axios from "axios";
-import {useAuth} from "../../../context/auth.js"
+import {useAuth} from "../../../context/auth"
 import { useEffect } from "react";
 import {Button} from "@mui/material"
 import { toast } from "react-toastify";

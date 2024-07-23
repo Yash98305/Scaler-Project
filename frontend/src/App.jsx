@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home" 
+import Home from "./pages/Home.jsx" 
 import Login from "./pages/Login.jsx" 
 import Register from "./pages/Register.jsx" 
 // import Header from "./pages/Header";
 import ErrorPage from "./pages/ErrorPage.jsx";
-import Forgot from "./pages/Forgot";
+import Forgot from "./pages/Forgot.jsx";
 import Profile from "./pages/Profile.jsx";
 import Category from "./pages/Category.jsx";
 import Expenses from "./pages/Expenses.jsx";

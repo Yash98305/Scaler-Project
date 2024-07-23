@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import { useAuth } from "../../../context/auth.js";
+import { useAuth } from "../../../context/auth";
 import { useEffect } from "react";
 import { useState } from "react";
 import "../../../css/home.css";

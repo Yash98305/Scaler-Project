@@ -5,19 +5,15 @@ import { useAuth } from "../../context/auth";
 import axios from "axios";
 import { useState } from "react";
 import CurrencyRupeeRoundedIcon from "@mui/icons-material/CurrencyRupeeRounded";
-import LineChart from "./vansh/LineChart";
 import img from "../../css/income.png";
 import img2 from "../../css/expenses.png";
-import MovingIcon from "@mui/icons-material/Moving";
-
 import { PieChart } from "@mui/x-charts/PieChart";
 import increaseicon from "../../icons/increase.png";
 import decreaseicon from "../../icons/decrease.png";
-import { motion, reverseEasing } from "framer-motion";
-import { useFetcher } from "react-router-dom";
+import { color, motion } from "framer-motion";
 
 const HomePage = () => {
-  const { api, auth,setData,data,filtered} = useAuth();
+  const { api, auth,setData,filtered} = useAuth();
   const [income, setIncome] = useState();
   const [expense, setExpense] = useState();
   const [balance, setBalance] = useState();
@@ -102,9 +98,10 @@ const HomePage = () => {
               alignItems: "center",
               justifyContent: "center",
               padding: "10px 0px",
+              
             }}
           >
-            <CreditCard balance={balance} name={auth?.user?.name}  />
+            <CreditCard style={{color:"#fff"}} balance={balance} name={auth?.user?.name}  />
           </div>
 
           <div

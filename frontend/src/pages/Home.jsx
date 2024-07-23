@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Body from "./Layout/Body.jsx";
 import HomePage from "./components/HomePage.jsx"
 import Animate from "../Animate.jsx";
-import { useAuth } from "../context/auth.js";
-import ErrorPage from "./ErrorPage.jsx";
+import { useAuth } from "../context/auth.jsx";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
@@ -16,8 +15,6 @@ useEffect(() => {
 }, [navigate, auth?.token]);
   return (
     <><Animate app={<Body obj={<HomePage/>}/>}/>
-
-      
     </>
     
   );

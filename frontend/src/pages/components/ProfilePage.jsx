@@ -1,15 +1,12 @@
-
 import { Avatar, Box, Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React from "react";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import { styled } from "@mui/material/styles";
 import CircleIcon from "@mui/icons-material/Circle";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import AddAPhotoRoundedIcon from "@mui/icons-material/AddAPhotoRounded";
 import { useState } from "react";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
