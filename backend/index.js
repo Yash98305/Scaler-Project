@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan');
 const cookieParser = require("cookie-parser");
 const cors = require('cors')
-const {fileURLToPath} = require("url");
+const path = require('path');
 const expenseRoute = require("./routes/expenseRoute.js");
 const incomeRoute = require("./routes/incomeRoute.js");
 const accountRoute = require("./routes/accountRoute.js");
@@ -19,6 +19,7 @@ app.use(express.json())
 app.use(morgan("dev"))
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 
 app.use('/api/v1/user',userRoute);
 app.use('/api/v1/category',categoriesRoute);
@@ -31,7 +32,9 @@ app.get('/',(req,res)=>{
         message:"welcome to chat application"
     })
 })
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
+});
 app.use(errorMiddleware);
 
 module.exports = app;
