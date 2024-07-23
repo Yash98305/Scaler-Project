@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext, createContext, useRef } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
-const api = "http://localhost:8000/api/v1"
+const api = "https://scaler-project.onrender.com/api/v1"
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
