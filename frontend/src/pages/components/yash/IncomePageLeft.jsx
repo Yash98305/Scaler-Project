@@ -7,7 +7,7 @@ import axios from "axios";
 import Search from "../../Layout/Search";
 
 const IncomePageLeft = ({open,setOpen}) => {
-  const {auth, api } = useAuth();
+  const {auth, api,filtered,setData } = useAuth();
   const [income, SetIncome] = useState([]);
   const [error, setError] = useState("");
 
@@ -21,6 +21,7 @@ const IncomePageLeft = ({open,setOpen}) => {
         });
        
         SetIncome(res.data.income); // Assuming res.data contains the categories array
+      setData(res.data.income); 
       } catch (err) {
         console.error("Failed to fetch categories:", err);
         setError("Failed to load categories");
@@ -29,6 +30,10 @@ const IncomePageLeft = ({open,setOpen}) => {
 
     fetchCategories();
   }, [api, auth,open]);
+
+  useEffect(()=>{
+    SetIncome(filtered)
+  },[filtered])
   return (
     <>
       <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Incomes</h2>
@@ -103,8 +108,8 @@ const IncomePageLeft = ({open,setOpen}) => {
                       >
                       <div className="incomename">
                       <div>{income.title}</div>
-                      <div>{income.accountId.name}</div>
-                      <div> {income.categoryId.name}</div>
+                      <div>{income.accountId?.name}</div>
+                      <div> {income.categoryId?.name}</div>
 
                        </div>
                        
@@ -115,7 +120,7 @@ const IncomePageLeft = ({open,setOpen}) => {
                         }}
                         align="center"
                       >
-                        {JSON.stringify(income.income_date).substring(1, 11)}
+                        {JSON.stringify(income.income_date)?.substring(1, 11)}
                       </td>
                       <td
                         style={{

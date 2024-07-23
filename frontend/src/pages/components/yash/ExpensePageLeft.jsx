@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const ExpensePageLeft = ({open}) => {
-    const { auth,api } = useAuth();
+    const { auth,api,setData,filtered } = useAuth();
     const [income, SetIncome] = useState([]);
     const [error, setError] = useState('');
 
@@ -19,6 +19,7 @@ const ExpensePageLeft = ({open}) => {
                     }
                 });
                 SetIncome(res.data.expense); 
+                setData(res.data.expense)
               } catch (err) {
                 console.error('Failed to fetch categories:', err);
                 setError('Failed to load categories');
@@ -27,6 +28,9 @@ const ExpensePageLeft = ({open}) => {
 
         fetchCategories();
     }, [api, auth,open]);
+    useEffect(()=>{
+      SetIncome(filtered)
+    },[filtered])
   return (
     <>
     <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Expenses</h2>
@@ -106,8 +110,8 @@ Date
                       >
                         <div className="incomename">
                       <div>{income.title}</div>
-                      <div>{income.accountId.name}</div>
-                      <div> {income.categoryId.name}</div>
+                      <div>{income.accountId?.name}</div>
+                      <div> {income.categoryId?.name}</div>
 
                        </div>
                       </td>
@@ -117,7 +121,7 @@ Date
                         }}
                         align="center"
                       >
-                        {JSON.stringify(income.expense_date).substring(1,11)}
+                        {JSON.stringify(income.expense_date)?.substring(1,11)}
                       </td>
                       <td
                         style={{

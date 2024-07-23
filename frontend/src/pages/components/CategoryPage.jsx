@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const CategoryPage = () => {
-  const { auth,api } = useAuth();
+  const { auth,api,filtered,setData} = useAuth();
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
   const [open, setOpen] = React.useState(false);
@@ -30,6 +30,7 @@ const CategoryPage = () => {
           },
         });
         setCategories(res.data.categories); // Assuming res.data contains the categories array
+        setData(res.data.categories)
       } catch (err) {
         console.error("Failed to fetch categories:", err);
         setError("Failed to load categories");
@@ -38,7 +39,9 @@ const CategoryPage = () => {
 
     fetchCategories();
   }, [api, auth,open]); // Depend on api and token for re-fetching when these values change
-
+  useEffect(()=>{
+    setCategories(filtered)
+  },[filtered])
 
 
   return (

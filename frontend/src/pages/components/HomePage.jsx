@@ -14,13 +14,13 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import increaseicon from "../../icons/increase.png";
 import decreaseicon from "../../icons/decrease.png";
 import { motion, reverseEasing } from "framer-motion";
+import { useFetcher } from "react-router-dom";
 
 const HomePage = () => {
-  const { api, auth } = useAuth();
+  const { api, auth,setData,data,filtered} = useAuth();
   const [income, setIncome] = useState();
   const [expense, setExpense] = useState();
   const [balance, setBalance] = useState();
-  const [data, setData] = useState();
   const [currentTransaction, setCurrentTransaction] = useState();
   const getIncome = async () => {
     try {
@@ -48,7 +48,7 @@ const HomePage = () => {
         );
       };
       setBalance(getTotalBalance());
-      setData(res.data.account);
+      // setData(res.data.account);
     } catch (err) {
       console.error("Failed to fetch categories:", err);
     }
@@ -61,6 +61,7 @@ const HomePage = () => {
         },
       });
       setCurrentTransaction(res.data.data);
+      setData(res.data.data)
     } catch (e) {
       console.log(e);
     }
@@ -84,7 +85,9 @@ const HomePage = () => {
     getAccountData();
     getcurrentTransaction();
   }, [auth,api]);
-
+  useEffect(()=>{
+    setCurrentTransaction(filtered)
+  },[filtered])
   return (
     <div style={{ width: "100%", height: "100%", display: "flex" }}>
       <div className="leftCont" style={{ width: "60%", padding: "5px" }}>
@@ -176,7 +179,7 @@ const HomePage = () => {
                       >
                         <div className="incomename">
                           <div>{income.title}</div>
-                          <div>{income.accountId.name}</div>
+                          <div>{income.accountId?.name}</div>
                         </div>
                         <div>
                           {income.income_date ? (

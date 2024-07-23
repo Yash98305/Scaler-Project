@@ -38,7 +38,7 @@ useEffect(()=>{
               CashSavvy
             </div>
             <div>
-              <Search />
+              <Search/>
             </div>
             <div className="horizontal_nav_1">
               <div style={{ paddingRight: "20px" }}>

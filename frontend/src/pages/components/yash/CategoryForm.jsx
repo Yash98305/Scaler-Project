@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import {Button} from "@mui/material"
 import { toast } from "react-toastify";
 
-const CategoryForm = ({setError,error,setCategories,categories}) => {
+const CategoryForm = ({error,categories}) => {
   const {api,auth} = useAuth();
 const [refresh,setRefresh] = React.useState(false)
 const EditCategory = async(id) => {

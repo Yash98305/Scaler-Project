@@ -13,13 +13,6 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   next();
 });
 
-exports.isLoggedIn =catchAsyncErrors(async(req, res, next) => {
-  console.log(req);
-  if (req.authorization) {
-    return res.redirect('/home'); 
-  }
-  next();
-});
 
 exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
